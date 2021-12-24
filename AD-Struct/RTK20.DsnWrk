@@ -1,0 +1,6 @@
+[ProjectGroup]
+Version=1.0
+[Project1]
+ProjectPath=RTK20\RTK20.PrjMbd
+[Project2]
+ProjectPath=Main_Board\Main_Board.PrjPcb
