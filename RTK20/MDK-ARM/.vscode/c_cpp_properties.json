@@ -3,20 +3,20 @@
         {
             "name": "RTK20",
             "includePath": [
-                "c:\\Users\\zhang\\Desktop\\RTK20\\RTK20\\Core\\Inc",
-                "c:\\Users\\zhang\\Desktop\\RTK20\\RTK20\\Drivers\\STM32F0xx_HAL_Driver\\Inc",
-                "c:\\Users\\zhang\\Desktop\\RTK20\\RTK20\\Drivers\\STM32F0xx_HAL_Driver\\Inc\\Legacy",
-                "c:\\Users\\zhang\\Desktop\\RTK20\\RTK20\\Drivers\\CMSIS\\Device\\ST\\STM32F0xx\\Include",
-                "c:\\Users\\zhang\\Desktop\\RTK20\\RTK20\\Drivers\\CMSIS\\Include",
-                "c:\\Users\\zhang\\Desktop\\RTK20\\RTK20\\MDK-ARM\\Components\\u8g2\\csrc",
-                "c:\\Users\\zhang\\Desktop\\RTK20\\RTK20\\MDK-ARM\\Components\\u8g2\\sys",
-                "c:\\Users\\zhang\\Desktop\\RTK20\\RTK20\\MDK-ARM\\Components\\ws2812",
-                "c:\\Users\\zhang\\Desktop\\RTK20\\RTK20\\MDK-ARM\\Components\\24cxx",
+                "c:\\Users\\zhang\\Desktop\\rtk20-heat-bed\\RTK20\\Core\\Inc",
+                "c:\\Users\\zhang\\Desktop\\rtk20-heat-bed\\RTK20\\Drivers\\STM32F0xx_HAL_Driver\\Inc",
+                "c:\\Users\\zhang\\Desktop\\rtk20-heat-bed\\RTK20\\Drivers\\STM32F0xx_HAL_Driver\\Inc\\Legacy",
+                "c:\\Users\\zhang\\Desktop\\rtk20-heat-bed\\RTK20\\Drivers\\CMSIS\\Device\\ST\\STM32F0xx\\Include",
+                "c:\\Users\\zhang\\Desktop\\rtk20-heat-bed\\RTK20\\Drivers\\CMSIS\\Include",
+                "c:\\Users\\zhang\\Desktop\\rtk20-heat-bed\\RTK20\\MDK-ARM\\Components\\u8g2\\csrc",
+                "c:\\Users\\zhang\\Desktop\\rtk20-heat-bed\\RTK20\\MDK-ARM\\Components\\u8g2\\sys",
+                "c:\\Users\\zhang\\Desktop\\rtk20-heat-bed\\RTK20\\MDK-ARM\\Components\\ws2812",
+                "c:\\Users\\zhang\\Desktop\\rtk20-heat-bed\\RTK20\\MDK-ARM\\Components\\24cxx",
                 "C:\\Program Files\\Keil\\Keil_ARM\\ARM\\ARMCC\\include",
                 "C:\\Program Files\\Keil\\Keil_ARM\\ARM\\ARMCC\\include\\rw",
-                "c:\\Users\\zhang\\Desktop\\RTK20\\RTK20\\MDK-ARM",
-                "c:\\Users\\zhang\\Desktop\\RTK20\\RTK20\\Core\\Src",
-                "c:\\Users\\zhang\\Desktop\\RTK20\\RTK20\\Drivers\\STM32F0xx_HAL_Driver\\Src"
+                "c:\\Users\\zhang\\Desktop\\rtk20-heat-bed\\RTK20\\MDK-ARM",
+                "c:\\Users\\zhang\\Desktop\\rtk20-heat-bed\\RTK20\\Core\\Src",
+                "c:\\Users\\zhang\\Desktop\\rtk20-heat-bed\\RTK20\\Drivers\\STM32F0xx_HAL_Driver\\Src"
             ],
             "defines": [
                 "USE_HAL_DRIVER",

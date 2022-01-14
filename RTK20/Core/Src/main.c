@@ -26,7 +26,6 @@
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "myfun.h"
@@ -103,12 +102,10 @@ int main(void)
   MX_TIM17_Init();
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
-	ON_Fun();
-	//POWER_ON;
+//	ON_Fun();
+	POWER_ON;
+	HAL_Delay(50);
 	All_Init();
-	
-	
-	
 	TIM14->PSC = 1000;
 	HAL_TIM_PWM_Start(&htim14,TIM_CHANNEL_1);//BEEPÐÅºÅ-¿ªÆô
 	HAL_Delay(100);
@@ -145,38 +142,34 @@ int main(void)
 //	u8g2_DrawBox(&u8g2,127 / 2 - 2, 0, 4, 63);
 //	u8g2_SendBuffer(&u8g2);
 //  HAL_Delay(3);
+//  topSurfaceMenu(&u8g2);
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
-    
+    settingMenu(&u8g2);
     /* USER CODE BEGIN 3 */
-//    u8g2_ClearBuffer(&u8g2);
-//		u8g2_SetFont(&u8g2,u8g2_font_helvB08_tr);
-//		u8g2_DrawStr(&u8g2,0,8,"helloworld");
 //		u8g2_SetFont(&u8g2,u8g2_font_helvB10_tr);
-//		u8g2_DrawStr(&u8g2,0,18,"helloworld");
-//		u8g2_SetFont(&u8g2,u8g2_font_helvB12_tr);
-//		u8g2_DrawStr(&u8g2,0,30,"helloworld");
-//		u8g2_SetFont(&u8g2,u8g2_font_helvB14_tr);
-//		u8g2_DrawStr(&u8g2,0,44,"helloworld");
-//		u8g2_SetFont(&u8g2,u8g2_font_helvB18_tr);
-//		u8g2_DrawStr(&u8g2,0,62,"helloworld");
-//		u8g2_SendBuffer(&u8g2);
 //		u8g2_ClearBuffer(&u8g2);
-		u8g2_SetFont(&u8g2,u8g2_font_helvB10_tr);
-		u8g2_ClearBuffer(&u8g2);
-		sprintf(oled_buff,"ADC1=%d",ADC_AvergedValue[0]);
-		u8g2_DrawStr(&u8g2,0,16,oled_buff); 
-		sprintf(oled_buff,"ADC2=%d",ADC_AvergedValue[1]);
-		u8g2_DrawStr(&u8g2,0,32,oled_buff);
-		sprintf(oled_buff,"ADC3=%d",ADC_AvergedValue[2]);
-		u8g2_DrawStr(&u8g2,0,48,oled_buff);
-		sprintf(oled_buff,"ADC4=%d",ADC_AvergedValue[3]);
-		u8g2_DrawStr(&u8g2,0,64,oled_buff);
-		u8g2_SendBuffer(&u8g2);
+//		sprintf(oled_buff,"ADC1=%d",ADC_AvergedValue[0]);
+//		u8g2_DrawStr(&u8g2,0,16,oled_buff); 
+//		sprintf(oled_buff,"ADC2=%d",ADC_AvergedValue[1]);
+//		u8g2_DrawStr(&u8g2,0,32,oled_buff);
+//		sprintf(oled_buff,"ADC3=%d",ADC_AvergedValue[2]);
+//		u8g2_DrawStr(&u8g2,0,48,oled_buff);
+//		sprintf(oled_buff,"ADC4=%d",ADC_AvergedValue[3]);
+//		u8g2_DrawStr(&u8g2,0,64,oled_buff);
+//		u8g2_SendBuffer(&u8g2);
+      //u8g2_ClearBuffer(&u8g2); 
+      
+//			u8g2_SendBuffer(&u8g2);
+//		u8g2_FirstPage(&u8g2);
+//		do{
 
+      printf("PageTest\r\n");
+//		}while(u8g2_NextPage(&u8g2));
+		
   }
   /* USER CODE END 3 */
 }
@@ -233,6 +226,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
 
 /* USER CODE END 4 */
 

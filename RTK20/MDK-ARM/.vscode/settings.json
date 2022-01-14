@@ -6,6 +6,10 @@
         "tim.h": "c",
         "24cxx.h": "c",
         "u8g2.h": "c",
-        "i2c.h": "c"
+        "i2c.h": "c",
+        "menu.h": "c",
+        "cstdio": "c",
+        "usart.h": "c",
+        "gpio.h": "c"
     }
 }

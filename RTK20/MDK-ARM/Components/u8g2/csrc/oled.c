@@ -14,7 +14,7 @@ uint8_t u8x8_byte_hw_i2c(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_p
     case U8X8_MSG_BYTE_INIT:
     {
         /* add your custom code to init i2c subsystem */
-        MX_I2C1_Init(); //I2C???
+        MX_I2C1_Init(); 
     }
     break;
 
@@ -61,6 +61,7 @@ void delay_us(uint32_t time)
         ;
 }
 
+
 uint8_t u8x8_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *arg_ptr)
 {
     switch (msg)
@@ -85,19 +86,25 @@ uint8_t u8x8_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *ar
     case U8X8_MSG_GPIO_I2C_DATA:  // arg_int=0: Output low at I2C data pin
         break;                    // arg_int=1: Input dir with pullup high for I2C data pin
     case U8X8_MSG_GPIO_MENU_SELECT:
-        u8x8_SetGPIOResult(u8x8, /* get menu select pin state */ 0);
+        u8x8_SetGPIOResult(u8x8,HAL_GPIO_ReadPin(KEY_OK_GPIO_Port,KEY_OK_Pin));
         break;
-    case U8X8_MSG_GPIO_MENU_NEXT:
-        u8x8_SetGPIOResult(u8x8, /* get menu next pin state */ 0);
+    // case U8X8_MSG_GPIO_MENU_NEXT:
+    //     u8x8_SetGPIOResult(u8x8, /* get menu next pin state */ 0);
+    //     break;
+    // case U8X8_MSG_GPIO_MENU_PREV:
+    //     u8x8_SetGPIOResult(u8x8, /* get menu prev pin state */ 0);
+    //     break;
+    // case U8X8_MSG_GPIO_MENU_HOME:
+    //     u8x8_SetGPIOResult(u8x8, /* get menu home pin state */ 0);
+    //     break;
+    case U8X8_MSG_GPIO_MENU_UP:
+        u8x8_SetGPIOResult(u8x8,HAL_GPIO_ReadPin(KEY_UP_GPIO_Port,KEY_UP_Pin));
         break;
-    case U8X8_MSG_GPIO_MENU_PREV:
-        u8x8_SetGPIOResult(u8x8, /* get menu prev pin state */ 0);
-        break;
-    case U8X8_MSG_GPIO_MENU_HOME:
-        u8x8_SetGPIOResult(u8x8, /* get menu home pin state */ 0);
+    case U8X8_MSG_GPIO_MENU_DOWN:
+        u8x8_SetGPIOResult(u8x8,HAL_GPIO_ReadPin(KEY_DOWN_GPIO_Port,KEY_DOWN_Pin));
         break;
     default:
-        u8x8_SetGPIOResult(u8x8, 1); // default return value
+        // u8x8_SetGPIOResult(u8x8, 1); // default return value
         break;
     }
     return 1;
@@ -105,8 +112,9 @@ uint8_t u8x8_gpio_and_delay(u8x8_t *u8x8, uint8_t msg, uint8_t arg_int, void *ar
 
 void u8g2Init(u8g2_t *u8g2)
 {
-    u8g2_Setup_ssd1306_i2c_128x64_noname_f(u8g2, U8G2_R2, u8x8_byte_hw_i2c, u8x8_gpio_and_delay); // ??? u8g2 ???
-    u8g2_InitDisplay(u8g2);                                                                       // ??????????????,??????,?????????
-    u8g2_SetPowerSave(u8g2, 0);                                                                   // ?????
+    u8g2_Setup_ssd1306_i2c_128x64_noname_f(u8g2, U8G2_R2, u8x8_byte_hw_i2c, u8x8_gpio_and_delay); 
+    u8g2_InitDisplay(u8g2);    
+
+    u8g2_SetPowerSave(u8g2, 0);                                                                 
     u8g2_ClearBuffer(u8g2);
 }

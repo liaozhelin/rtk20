@@ -133,7 +133,7 @@ uint8_t u8x8_GetMenuEvent(u8x8_t *u8x8)
 #else  /* __unix__ */
 
 
-#define U8X8_DEBOUNCE_WAIT 2
+#define U8X8_DEBOUNCE_WAIT 1
 /* do debounce and return a GPIO msg which indicates the event */
 /* returns 0, if there is no event */
 #if defined(__GNUC__) && !defined(__CYGWIN__)
@@ -152,33 +152,33 @@ uint8_t u8x8_GetMenuEvent(u8x8_t *u8x8)
     case 0x00:	/* State A, default state */
       if ( u8x8->debounce_default_pin_state != pin_state )
       {
-	//u8x8->debounce_last_pin_state = pin_state;
-	u8x8->debounce_state = 0x010 + U8X8_DEBOUNCE_WAIT;
+        //u8x8->debounce_last_pin_state = pin_state;
+        u8x8->debounce_state = 0x010 + U8X8_DEBOUNCE_WAIT;
       }
       break;
     case 0x10:	/* State B */
       //if ( u8x8->debounce_last_pin_state != pin_state )
       if ( u8x8->debounce_default_pin_state == pin_state )
       {
-	u8x8->debounce_state = 0x00;	/* back to state A */
+        u8x8->debounce_state = 0x00;	/* back to state A */
       }
       else
       {
-	/* keypress detected */
-	u8x8->debounce_last_pin_state = pin_state;
-	//result_msg = U8X8_MSG_GPIO_MENU_NEXT;
-	u8x8->debounce_state = 0x020 + U8X8_DEBOUNCE_WAIT;	/* got to state C */	
+        /* keypress detected */
+        u8x8->debounce_last_pin_state = pin_state;
+        //result_msg = U8X8_MSG_GPIO_MENU_NEXT;   //fix and open _lzl
+        u8x8->debounce_state = 0x020 + U8X8_DEBOUNCE_WAIT;	/* got to state C */	
       }
       break;
       
     case 0x20:	/* State C */
       if ( u8x8->debounce_last_pin_state != pin_state )
       {
-	u8x8->debounce_state = 0x00;	/* back to state A */
+        u8x8->debounce_state = 0x00;	/* back to state A */
       }
       else
       {
-	u8x8->debounce_state = 0x030;	/* got to state D */	
+        u8x8->debounce_state = 0x030;	/* got to state D */	
       }
       break;
       
@@ -186,13 +186,13 @@ uint8_t u8x8_GetMenuEvent(u8x8_t *u8x8)
       /* wait until key release */
       if ( u8x8->debounce_default_pin_state == pin_state )
       {
-	u8x8->debounce_state = 0x00;	/* back to state A */
-	result_msg = U8X8_MSG_GPIO(u8x8_find_first_diff(u8x8->debounce_default_pin_state, u8x8->debounce_last_pin_state)+U8X8_PIN_OUTPUT_CNT);
+        u8x8->debounce_state = 0x00;	/* back to state A */
+        result_msg = U8X8_MSG_GPIO(u8x8_find_first_diff(u8x8->debounce_default_pin_state, u8x8->debounce_last_pin_state)+U8X8_PIN_OUTPUT_CNT);
       }
       else
       {
-	//result_msg = U8X8_MSG_GPIO_MENU_NEXT;
-	// maybe implement autorepeat here 
+        //result_msg = U8X8_MSG_GPIO_MENU_NEXT;
+        //maybe implement autorepeat here   /fix and open _lzl
       }
       break;
     default:

@@ -11,6 +11,7 @@
 "rtk20\stm32f0xx_it.o"
 "rtk20\stm32f0xx_hal_msp.o"
 "rtk20\myfun.o"
+"rtk20\menu.o"
 "rtk20\stm32f0xx_hal_adc.o"
 "rtk20\stm32f0xx_hal_adc_ex.o"
 "rtk20\stm32f0xx_hal_rcc.o"

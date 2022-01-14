@@ -13,7 +13,7 @@
 #include "stdio.h"
 #include "ws2812.h"
 #include "24cxx.h"
-
+#include "menu.h"
 void All_Init(void);
 void ON_Fun(void);
 

@@ -17,17 +17,24 @@ Library Manager: ArmAr.exe V5.06 update 7 (build 960)
 Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
 CPU DLL:         SARMCM3.DLL V5.35.0.2
 Dialog DLL:      DARMCM1.DLL V1.19.4.0
-Target DLL:      Segger\JL2CM3.dll V2.99.40.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
 Dialog DLL:      TARMCM1.DLL V1.14.4.0
  
 <h2>Project:</h2>
-C:\Users\zhang\Desktop\rtk20\RTK20\MDK-ARM\RTK20.uvprojx
-Project File Date:  12/24/2021
+c:\Users\zhang\Desktop\rtk20-heat-bed\RTK20\MDK-ARM\RTK20.uvprojx
+Project File Date:  01/13/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\Bin'
 Build target 'RTK20'
-"RTK20\RTK20.axf" - 0 Error(s), 0 Warning(s).
+compiling menu.c...
+..\Core\Src\menu.c(36): warning:  #550-D: variable "current_selection"  was set but never used
+      uint8_t current_selection  = 0;
+..\Core\Src\menu.c: 1 warning, 0 errors
+linking...
+Program Size: Code=18700 RO-data=4860 RW-data=44 ZI-data=3140  
+FromELF: creating hex file...
+"RTK20\RTK20.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -51,7 +58,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.5.0
       Include file:  CMSIS\Core\Include\tz_context.h
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:07
 </pre>
 </body>
 </html>
