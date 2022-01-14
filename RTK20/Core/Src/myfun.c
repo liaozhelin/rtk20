@@ -1,16 +1,16 @@
 #include "myfun.h"
 
+RTK20 rtk20;
+uint8_t loopFunFlag = 0x01;
+
 void All_Init(void){
 	u8g2Init(&u8g2);
-  helloMenu(&u8g2);
+  	helloMenu(&u8g2);
 	HAL_DMA_Init(&hdma_adc);
 	__HAL_LINKDMA(&hadc,DMA_Handle,hdma_adc);
 	HAL_ADC_Start_DMA(&hadc,(uint32_t*)&ADC_ConvertedValue,80);
 	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_1);//MOS管信号-开启
-
 	AT24CXX_Init();   //24CXX初始化
-	
-	
 }
 
 void ON_Fun(void){
@@ -55,5 +55,17 @@ void ON_Fun(void){
 			}
 		}
 		KEY_OK_CLEAR;
+}
+
+void loopFun(u8g2_t *in){
+  if(loopFunFlag & 0X80){
+    settingMenu(in);
+  }
+  else if(loopFunFlag &0X01){
+    manualSurfaceMenu(in);
+  }
+  else if(loopFunFlag &0X02){
+    reflowSurfaceMenu(in);
+  }
 }
 

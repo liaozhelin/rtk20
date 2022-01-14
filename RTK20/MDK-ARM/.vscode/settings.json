@@ -10,6 +10,11 @@
         "menu.h": "c",
         "cstdio": "c",
         "usart.h": "c",
-        "gpio.h": "c"
+        "gpio.h": "c",
+        "stdlib.h": "c",
+        "xiosbase": "c",
+        "myfun.h": "c",
+        "adc.h": "c",
+        "include.h": "c"
     }
 }

@@ -24,8 +24,8 @@ void WS2812_send(uint8_t *rgb, uint16_t len)
 {
 	uint8_t i;
 	uint16_t memaddr = 0;
-	uint16_t buffersize;
-	buffersize = len * GRB_BIT;	// number of bytes needed is #LEDs * 24 bytes
+	// uint16_t buffersize;
+	// buffersize = len * GRB_BIT;	// number of bytes needed is #LEDs * 24 bytes
     
 	while (len)
 	{

@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F030x6</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F0xx_HAL_Driver/Inc;../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F0xx/Include;../Drivers/CMSIS/Include;.\Components\u8g2\csrc;.\Components\u8g2\sys;.\Components\ws2812;.\Components\24cxx</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F0xx_HAL_Driver/Inc;../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F0xx/Include;../Drivers/CMSIS/Include;.\Components\u8g2\csrc;.\Components\u8g2\sys;.\Components\ws2812;.\Components\24cxx;..\Core\Src</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

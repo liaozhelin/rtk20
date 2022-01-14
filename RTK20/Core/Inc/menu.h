@@ -1,13 +1,12 @@
-#ifndef __MYFUN_H__ 
-#define __MYFUN_H__
+#ifndef __MENU_H__ 
+#define __MENU_H__
 
-#include "main.h"
-#include "oled.h"
-#include "gpio.h"
-#include "stdio.h"
-#include "usart.h"
+#include "include.h"
+#include "u8g2.h"
 
 void helloMenu(u8g2_t *u8g2);
-void topSurfaceMenu(u8g2_t *in);
+void manualSurfaceMenu(u8g2_t *in);
+void reflowSurfaceMenu(u8g2_t *in);
+void settingMenu(u8g2_t *in);
 
 #endif 

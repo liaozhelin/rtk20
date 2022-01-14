@@ -1,5 +1,7 @@
 rtk20\myfun.o: ..\Core\Src\myfun.c
 rtk20\myfun.o: ../Core/Inc/myfun.h
+rtk20\myfun.o: ../Core/Inc/include.h
+rtk20\myfun.o: ../Core/Inc/adc.h
 rtk20\myfun.o: ../Core/Inc/main.h
 rtk20\myfun.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h
 rtk20\myfun.o: ../Core/Inc/stm32f0xx_hal_conf.h
@@ -37,7 +39,6 @@ rtk20\myfun.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h
 rtk20\myfun.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h
 rtk20\myfun.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h
 rtk20\myfun.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h
-rtk20\myfun.o: ../Core/Inc/adc.h
 rtk20\myfun.o: ../Core/Inc/dma.h
 rtk20\myfun.o: ../Core/Inc/i2c.h
 rtk20\myfun.o: ../Core/Inc/rtc.h
@@ -53,3 +54,5 @@ rtk20\myfun.o: C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\Bin\..\include\stdio.h
 rtk20\myfun.o: .\Components\ws2812\ws2812.h
 rtk20\myfun.o: .\Components\24cxx\24cxx.h
 rtk20\myfun.o: ../Core/Inc/menu.h
+rtk20\myfun.o: ../Core/Inc/include.h
+rtk20\myfun.o: ../Core/Inc/myfun.h

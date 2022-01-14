@@ -1,5 +1,7 @@
 rtk20\menu.o: ..\Core\Src\menu.c
 rtk20\menu.o: ../Core/Inc/menu.h
+rtk20\menu.o: ../Core/Inc/include.h
+rtk20\menu.o: ../Core/Inc/adc.h
 rtk20\menu.o: ../Core/Inc/main.h
 rtk20\menu.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h
 rtk20\menu.o: ../Core/Inc/stm32f0xx_hal_conf.h
@@ -37,12 +39,20 @@ rtk20\menu.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h
 rtk20\menu.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h
 rtk20\menu.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h
 rtk20\menu.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h
+rtk20\menu.o: ../Core/Inc/dma.h
+rtk20\menu.o: ../Core/Inc/i2c.h
+rtk20\menu.o: ../Core/Inc/rtc.h
+rtk20\menu.o: ../Core/Inc/tim.h
+rtk20\menu.o: ../Core/Inc/usart.h
+rtk20\menu.o: ../Core/Inc/gpio.h
 rtk20\menu.o: .\Components\u8g2\csrc\oled.h
 rtk20\menu.o: .\Components\u8g2\csrc\u8g2.h
 rtk20\menu.o: .\Components\u8g2\csrc\u8x8.h
 rtk20\menu.o: C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\Bin\..\include\stdarg.h
 rtk20\menu.o: C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\Bin\..\include\limits.h
-rtk20\menu.o: ../Core/Inc/i2c.h
-rtk20\menu.o: ../Core/Inc/gpio.h
 rtk20\menu.o: C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\Bin\..\include\stdio.h
-rtk20\menu.o: ../Core/Inc/usart.h
+rtk20\menu.o: .\Components\ws2812\ws2812.h
+rtk20\menu.o: .\Components\24cxx\24cxx.h
+rtk20\menu.o: ../Core/Inc/menu.h
+rtk20\menu.o: ../Core/Inc/myfun.h
+rtk20\menu.o: ../Core/Inc/include.h

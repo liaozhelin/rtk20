@@ -16,9 +16,9 @@ uint8_t AT24CXX_ReadOneByte(uint16_t ReadAddr)
 {				  
 	uint8_t date=0;
 	if(EE_TYPE>AT24C16){
-		uint8_t temp[2];
-		temp[0] = ReadAddr>>8;
-		temp[1] = ReadAddr;
+		// uint8_t temp[2];
+		// temp[0] = ReadAddr>>8;
+		// temp[1] = ReadAddr; 
 		HAL_I2C_Mem_Read(&hi2c1,AT24CXX_DEV_ADDRESS,ReadAddr,I2C_MEMADD_SIZE_16BIT,&date,2,100);
 	}
 	else{
