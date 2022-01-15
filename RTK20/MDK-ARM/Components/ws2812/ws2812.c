@@ -1,3 +1,10 @@
+/*
+ * @Author: [LiaoZhelin]
+ * @Date: 2021-12-23 10:37:25
+ * @LastEditors: [LiaoZhelin]
+ * @LastEditTime: 2022-01-15 16:49:25
+ * @Description: 
+ */
 #include "ws2812.h"
 
 #define RED_INDEX   0

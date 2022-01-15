@@ -27,28 +27,31 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-
 /* USER CODE BEGIN Includes */
-
+#include "include.h"
 /* USER CODE END Includes */
 
 /* USER CODE BEGIN Private defines */
-extern uint8_t KEY_Value;
 
 #define POWER_ON HAL_GPIO_WritePin(ON_GPIO_Port, ON_Pin, GPIO_PIN_SET)
 #define POWER_OFF HAL_GPIO_WritePin(ON_GPIO_Port, ON_Pin, GPIO_PIN_RESET)
 
-#define KEY_OK_PUSH KEY_Value & 0X01
-#define KEY_OK_RELEASE KEY_Value & 0X02
-#define KEY_OK_CLEAR KEY_Value &= 0XFC
+#define KEY_OK_PUSH rtk20d.key.KEY_OK & 0X01
+#define KEY_OK_RELEASE_S rtk20d.key.KEY_OK & 0X02
+#define KEY_OK_RELEASE_L rtk20d.key.KEY_OK & 0X04
+#define KEY_OK_CLEAR rtk20d.key.KEY_OK &=0X00
 
-#define KEY_UP_PUSH KEY_Value & 0X04
-#define KEY_UP_RELEASE KEY_Value & 0X08
-#define KEY_UP_CLEAR KEY_Value &= 0XF3
+#define KEY_UP_PUSH rtk20d.key.KEY_UP & 0X01
+#define KEY_UP_RELEASE_S rtk20d.key.KEY_UP & 0X02
+#define KEY_UP_RELEASE_L rtk20d.key.KEY_UP & 0X04
+#define KEY_UP_CLEAR rtk20d.key.KEY_UP &= 0X00
 
-#define KEY_DOWN_PUSH KEY_Value & 0X10
-#define KEY_DOWN_RELEASE KEY_Value & 0X20
-#define KEY_DOWN_CLEAR KEY_Value &= 0XCF
+#define KEY_DOWN_PUSH rtk20d.key.KEY_DOWN & 0X01
+#define KEY_DOWN_RELEASE_S rtk20d.key.KEY_DOWN & 0X02
+#define KEY_DOWN_RELEASE_L rtk20d.key.KEY_DOWN & 0X04
+#define KEY_DOWN_CLEAR rtk20d.key.KEY_DOWN &= 0X00
+
+#define KEY_LONG_PUSH 700
 
 /* USER CODE END Private defines */
 

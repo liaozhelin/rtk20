@@ -1,3 +1,10 @@
+/*
+ * @Author: [LiaoZhelin]
+ * @Date: 2021-12-24 10:20:34
+ * @LastEditors: [LiaoZhelin]
+ * @LastEditTime: 2022-01-15 16:48:06
+ * @Description: 
+ */
 #include "myfun.h"
 
 RTK20_Static rtk20s;
@@ -26,12 +33,13 @@ void ON_Fun(void){
 					POWER_OFF;
 					while(1);
 				}
-				if(KEY_OK_RELEASE)break;
+				if(KEY_UP_RELEASE_S)break;
 			}
 		}
 		color_green[1]=10;
 		WS2812_send(color_green,6);
 		color_green[1]=0;
+		KEY_OK_CLEAR;
 		Sys_Tick = HAL_GetTick();
 		while(1){
 			if((HAL_GetTick() - Sys_Tick) > 500){
@@ -51,7 +59,7 @@ void ON_Fun(void){
 				}
 				break;
 			}
-			if(KEY_OK_RELEASE && ((HAL_GetTick() - Sys_Tick)<1200)){
+			if((KEY_OK_RELEASE_S||KEY_OK_RELEASE_L) && ((HAL_GetTick() - Sys_Tick)<1200)){
 				POWER_OFF;
 				while(1);
 			}

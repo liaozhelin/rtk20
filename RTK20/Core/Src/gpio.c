@@ -22,7 +22,6 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN 0 */
-uint8_t KEY_Value = 0;
 /* USER CODE END 0 */
 
 /*----------------------------------------------------------------------------*/
@@ -66,7 +65,7 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(ON_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PAPin PAPin */
-  GPIO_InitStruct.Pin = KEY_UP_Pin|KEY_DOWN_Pin;
+  GPIO_InitStruct.Pin = KEY_UP_Pin | KEY_DOWN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -77,42 +76,70 @@ void MX_GPIO_Init(void)
 
   HAL_NVIC_SetPriority(EXTI4_15_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI4_15_IRQn);
-
 }
 
 /* USER CODE BEGIN 2 */
 
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
-		if(GPIO_Pin == KEY_OK_Pin){
-			 if(HAL_GPIO_ReadPin(KEY_OK_GPIO_Port,KEY_OK_Pin) == GPIO_PIN_RESET){
-					KEY_Value &= 0XFE;  
-					KEY_Value |= 0X01;						
-			 }
-			 else if(HAL_GPIO_ReadPin(KEY_OK_GPIO_Port,KEY_OK_Pin) == GPIO_PIN_SET){
-					KEY_Value &= 0XFD;  
-				  KEY_Value |= 0X02;
-			 }		
-		}
-		if( GPIO_Pin == KEY_UP_Pin){
-		 if(HAL_GPIO_ReadPin(KEY_UP_GPIO_Port,KEY_UP_Pin) == GPIO_PIN_RESET){
-					KEY_Value &= 0XFB;
-					KEY_Value |= 0X04;
-		 }
-		 else if(HAL_GPIO_ReadPin(KEY_UP_GPIO_Port,KEY_UP_Pin) == GPIO_PIN_SET){
-					KEY_Value &= 0XF7;
-					KEY_Value |= 0X08;
-		 }
-	}
-	if( GPIO_Pin == KEY_DOWN_Pin){
-		if(HAL_GPIO_ReadPin(KEY_DOWN_GPIO_Port,KEY_DOWN_Pin) == GPIO_PIN_RESET){ 
-					KEY_Value &= 0XEF;  
-					KEY_Value |= 0X10;  
-		} 
-		else if(HAL_GPIO_ReadPin(KEY_DOWN_GPIO_Port,KEY_DOWN_Pin) == GPIO_PIN_SET){
-					KEY_Value &= 0XDF;  
-					KEY_Value |= 0X20; 
-		}		
-	}
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  static uint32_t Sys_Tick = 0;
+  if (GPIO_Pin == KEY_OK_Pin)
+  {
+    if (HAL_GPIO_ReadPin(KEY_OK_GPIO_Port, KEY_OK_Pin) == GPIO_PIN_RESET)
+    {
+      Sys_Tick = HAL_GetTick();
+      rtk20d.key.KEY_OK |= 0X01;
+    } //PUSH DOWN
+    else if (HAL_GPIO_ReadPin(KEY_OK_GPIO_Port, KEY_OK_Pin) == GPIO_PIN_SET)
+    {
+      if ((HAL_GetTick() - Sys_Tick) > KEY_LONG_PUSH)
+      {
+        rtk20d.key.KEY_OK |= 0X04;
+      } //PUSH LONG
+      else
+      {
+        rtk20d.key.KEY_OK |= 0X02;
+      } //PUSH SHORT
+    }
+  }
+  else if (GPIO_Pin == KEY_UP_Pin)
+  {
+    if (HAL_GPIO_ReadPin(KEY_UP_GPIO_Port, KEY_UP_Pin) == GPIO_PIN_RESET)
+    {
+      Sys_Tick = HAL_GetTick();
+      rtk20d.key.KEY_UP |= 0X01;
+    }
+    else if (HAL_GPIO_ReadPin(KEY_UP_GPIO_Port, KEY_UP_Pin) == GPIO_PIN_SET)
+    {
+      if ((HAL_GetTick() - Sys_Tick) > KEY_LONG_PUSH)
+      {
+        rtk20d.key.KEY_UP |= 0X04;
+      } //PUSH LONG
+      else
+      {
+        rtk20d.key.KEY_UP |= 0X02;
+      } //PUSH SHORT
+    }
+  }
+  else if (GPIO_Pin == KEY_DOWN_Pin)
+  {
+    if (HAL_GPIO_ReadPin(KEY_DOWN_GPIO_Port, KEY_DOWN_Pin) == GPIO_PIN_RESET)
+    {
+      Sys_Tick = HAL_GetTick();
+      rtk20d.key.KEY_DOWN |= 0X01;
+    }
+    else if (HAL_GPIO_ReadPin(KEY_DOWN_GPIO_Port, KEY_DOWN_Pin) == GPIO_PIN_SET)
+    {
+      if ((HAL_GetTick() - Sys_Tick) > KEY_LONG_PUSH)
+      {
+        rtk20d.key.KEY_DOWN |= 0X04;
+      }
+      else
+      {
+        rtk20d.key.KEY_DOWN |= 0X02;
+      }
+    }
+  }
 }
 
 /* USER CODE END 2 */

@@ -37,3 +37,22 @@ rtk20\gpio.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h
 rtk20\gpio.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h
 rtk20\gpio.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h
 rtk20\gpio.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h
+rtk20\gpio.o: ../Core/Inc/include.h
+rtk20\gpio.o: ../Core/Inc/adc.h
+rtk20\gpio.o: ../Core/Inc/dma.h
+rtk20\gpio.o: ../Core/Inc/i2c.h
+rtk20\gpio.o: ../Core/Inc/rtc.h
+rtk20\gpio.o: ../Core/Inc/tim.h
+rtk20\gpio.o: ../Core/Inc/usart.h
+rtk20\gpio.o: ../Core/Inc/gpio.h
+rtk20\gpio.o: .\Components\u8g2\csrc\oled.h
+rtk20\gpio.o: .\Components\u8g2\csrc\u8g2.h
+rtk20\gpio.o: .\Components\u8g2\csrc\u8x8.h
+rtk20\gpio.o: C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\Bin\..\include\stdarg.h
+rtk20\gpio.o: C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\Bin\..\include\limits.h
+rtk20\gpio.o: C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\Bin\..\include\stdio.h
+rtk20\gpio.o: .\Components\ws2812\ws2812.h
+rtk20\gpio.o: .\Components\24cxx\24cxx.h
+rtk20\gpio.o: ../Core/Inc/include.h
+rtk20\gpio.o: ../Core/Inc/menu.h
+rtk20\gpio.o: ../Core/Inc/myfun.h

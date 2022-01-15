@@ -1,3 +1,10 @@
+/*
+ * @Author: [LiaoZhelin]
+ * @Date: 2022-01-13 17:08:37
+ * @LastEditors: [LiaoZhelin]
+ * @LastEditTime: 2022-01-15 17:24:20
+ * @Description: 
+ */
 #include "menu.h"
 
 void helloMenu(u8g2_t *in){
@@ -10,10 +17,12 @@ void helloMenu(u8g2_t *in){
 
 void manualSurfaceMenu(u8g2_t *in){
     uint8_t current_selection  = 0;
+    char oled_buff[10]={0};
     u8g2_ClearBuffer(in);
 
     u8g2_SetFont(in,u8g2_font_helvB24_tn);
-		u8g2_DrawStr(in,36,27,"000");
+    sprintf(oled_buff,"%3d",rtk20s.mannul.TempSet);
+	u8g2_DrawStr(in,36,27,oled_buff);
     u8g2_DrawStr(in,36,61,"205");
 		u8g2_DrawRFrame(&u8g2,0,0,95,30,10);
 		u8g2_DrawRFrame(&u8g2,0,34,95,30,10);
@@ -28,12 +37,16 @@ void manualSurfaceMenu(u8g2_t *in){
 	  u8g2_DrawStr(in,98,65,"P");
 	
     u8g2_SendBuffer(&u8g2);
-	current_selection = u8x8_GetMenuEvent(u8g2_GetU8x8(&u8g2));
-    if(current_selection == U8X8_MSG_GPIO_MENU_UP){
-        
+	if(KEY_OK_RELEASE_L){
+				
+	}
+	else if(KEY_UP_RELEASE_S){
+        rtk20s.mannul.TempSet = ((rtk20s.mannul.TempSet < rtk20s.peripheralFun.MaxTemp)?(rtk20s.mannul.TempSet+1):rtk20s.mannul.TempSet);
+        KEY_UP_CLEAR;
     }
-    else if(current_selection == U8X8_MSG_GPIO_MENU_DOWN){\
-
+    else if(KEY_DOWN_RELEASE_S){
+        rtk20s.mannul.TempSet = ((rtk20s.mannul.TempSet > 0)?(rtk20s.mannul.TempSet-1):rtk20s.mannul.TempSet);
+        KEY_DOWN_CLEAR;
     }
     // u8g2_DrawButtonUTF8(in,20,15,U8G2_BTN_BW2|U8G2_BTN_HCENTER|U8G2_BTN_INV|U8G2_BTN_SHADOW1,0,1,1,"+");
     // u8g2_DrawButtonUTF8(in,20,45,U8G2_BTN_BW2|U8G2_BTN_HCENTER|U8G2_BTN_INV|U8G2_BTN_SHADOW1,0,1,1,"-");
@@ -81,7 +94,7 @@ void monitorFun(u8g2_t *in){
     u8g2_SendBuffer(&u8g2);
 
     for(;;){
-        char oled_buff[10];
+        char oled_buff[10]={0};
 
         u8g2_ClearBuffer(&u8g2);
         u8g2_DrawLine(&u8g2,0,16,127,16);
@@ -108,7 +121,7 @@ void monitorFun(u8g2_t *in){
 void peripheralFun(u8g2_t *in){
     uint8_t current_selection  = 0;
     const char *string_peripheralFun_title = "Peripheral";
-    const char *string_peripheralFun = "InVoltage\nInCurrent\nBeep\nRGBLed\nUART\n-Restore-Factory-\n>Exit<";
+    const char *string_peripheralFun = "InVoltage\nInCurrent\nBeep\nRGBLed\nUART\nMaxTemp\n-Restore-Factory-\n>Exit<";
     u8g2_SetFont(in,u8g2_font_helvB10_tr);
     current_selection  = u8g2_UserInterfaceSelectionList(in,string_peripheralFun_title,1,string_peripheralFun);
     switch(current_selection){

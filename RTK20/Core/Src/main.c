@@ -61,10 +61,6 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  char oled_buff[20];
-	
-  uint8_t color_red[] = {255, 0, 0};
-	uint8_t color_green[] = {0, 255, 0};
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -94,19 +90,19 @@ int main(void)
   MX_TIM17_Init();
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
-//	ON_Fun();
+	//ON_Fun();
 	POWER_ON;
 	HAL_Delay(50);
 	All_Init();
-//	TIM14->PSC = 1000;
-//	HAL_TIM_PWM_Start(&htim14,TIM_CHANNEL_1);
-//	HAL_Delay(100);
-//	TIM14->PSC = 800;
-//	HAL_Delay(100);
-//	TIM14->PSC = 600;
+	TIM14->PSC = 1000;
+	HAL_TIM_PWM_Start(&htim14,TIM_CHANNEL_1);
 	HAL_Delay(100);
-//	HAL_TIM_PWM_Stop(&htim14,TIM_CHANNEL_1);
-   
+	TIM14->PSC = 800;
+	HAL_Delay(100);
+	TIM14->PSC = 600;
+	HAL_Delay(100);
+	HAL_TIM_PWM_Stop(&htim14,TIM_CHANNEL_1);
+	
   AT24CXX_Save();
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */

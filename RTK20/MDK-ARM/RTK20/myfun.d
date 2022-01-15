@@ -45,6 +45,7 @@ rtk20\myfun.o: ../Core/Inc/rtc.h
 rtk20\myfun.o: ../Core/Inc/tim.h
 rtk20\myfun.o: ../Core/Inc/usart.h
 rtk20\myfun.o: ../Core/Inc/gpio.h
+rtk20\myfun.o: ../Core/Inc/include.h
 rtk20\myfun.o: .\Components\u8g2\csrc\oled.h
 rtk20\myfun.o: .\Components\u8g2\csrc\u8g2.h
 rtk20\myfun.o: .\Components\u8g2\csrc\u8x8.h
@@ -53,6 +54,5 @@ rtk20\myfun.o: C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\Bin\..\include\limits.h
 rtk20\myfun.o: C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\Bin\..\include\stdio.h
 rtk20\myfun.o: .\Components\ws2812\ws2812.h
 rtk20\myfun.o: .\Components\24cxx\24cxx.h
-rtk20\myfun.o: ../Core/Inc/include.h
 rtk20\myfun.o: ../Core/Inc/menu.h
 rtk20\myfun.o: ../Core/Inc/myfun.h
