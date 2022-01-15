@@ -1,6 +1,8 @@
 #include "myfun.h"
 
-RTK20 rtk20;
+RTK20_Static rtk20s;
+RTK20_Dynamic rtk20d;
+
 uint8_t loopFunFlag = 0x01;
 
 void All_Init(void){

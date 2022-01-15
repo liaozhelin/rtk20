@@ -98,14 +98,16 @@ int main(void)
 	POWER_ON;
 	HAL_Delay(50);
 	All_Init();
-	TIM14->PSC = 1000;
-	HAL_TIM_PWM_Start(&htim14,TIM_CHANNEL_1);
+//	TIM14->PSC = 1000;
+//	HAL_TIM_PWM_Start(&htim14,TIM_CHANNEL_1);
+//	HAL_Delay(100);
+//	TIM14->PSC = 800;
+//	HAL_Delay(100);
+//	TIM14->PSC = 600;
 	HAL_Delay(100);
-	TIM14->PSC = 800;
-	HAL_Delay(100);
-	TIM14->PSC = 600;
-	HAL_Delay(100);
-	HAL_TIM_PWM_Stop(&htim14,TIM_CHANNEL_1);
+//	HAL_TIM_PWM_Stop(&htim14,TIM_CHANNEL_1);
+   
+  AT24CXX_Save();
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)

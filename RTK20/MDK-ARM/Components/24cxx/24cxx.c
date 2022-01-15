@@ -3,11 +3,39 @@
 #define AT24CXX_DEV_ADDRESS     0xA0 
 #define AT24CXX_DELAY_MS        HAL_Delay
 
-
-//初始化IIC接口
+//将结构体中数据写入EEPROM中
+uint8_t AT24CXX_Save(void){
+	if(!AT24CXX_Check()){
+		uint8_t i = 0;
+		uint32_t *p = NULL;
+		p = (uint32_t *)(&rtk20s);
+		for(i = 0;i<(sizeof(rtk20s)/sizeof(*p));i++){
+			AT24CXX_WriteLenByte(0X0000+(i*4),*p,4);
+			*(p++);
+		}
+	}else{
+		return 1;
+	}
+}
+//初始化IIC接口+读回EEPROM中数据
 uint8_t AT24CXX_Init(void){
 	//··I2C初始化··HAL库中已经完成//
-	return(AT24CXX_Check());
+	if(!AT24CXX_Check()){
+//		AT24CXX_WriteLenByte(0X0000,0X11223344,4);
+//    AT24CXX_WriteLenByte(0X0004,0X55667788,4);
+//		AT24CXX_WriteLenByte(0X0008,0X9900AABB,4);
+//		AT24CXX_WriteLenByte(0X000C,0XCCDDEEFF,4);
+		uint8_t i = 0;
+		uint32_t *p = NULL;
+		p = (uint32_t *)(&rtk20s);
+		for(i = 0;i<(sizeof(rtk20s)/sizeof(*p));i++){
+			*p = AT24CXX_ReadLenByte(0X0000+(i*4),4);
+			*(p++);
+		}
+	}
+	else{
+		return 1;
+	}
 }
 //在AT24CXX指定地址读出一个数据
 //ReadAddr:开始读数的地址  

@@ -1,8 +1,23 @@
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\Bin'
 Build target 'RTK20'
+compiling menu.c...
 compiling myfun.c...
+compiling main.c...
+../Core/Src/main.c(64): warning:  #177-D: variable "oled_buff"  was declared but never referenced
+    char oled_buff[20];
+../Core/Src/main.c(66): warning:  #177-D: variable "color_red"  was declared but never referenced
+    uint8_t color_red[] = {255, 0, 0};
+../Core/Src/main.c(67): warning:  #177-D: variable "color_green"  was declared but never referenced
+  	uint8_t color_green[] = {0, 255, 0};
+../Core/Src/main.c: 3 warnings, 0 errors
+compiling 24cxx.c...
+Components\24cxx\24cxx.c(19): warning:  #940-D: missing return statement at end of non-void function "AT24CXX_Save" 
+  }
+Components\24cxx\24cxx.c(39): warning:  #940-D: missing return statement at end of non-void function "AT24CXX_Init" 
+  }
+Components\24cxx\24cxx.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=20584 RO-data=2584 RW-data=44 ZI-data=3140  
+Program Size: Code=20556 RO-data=2584 RW-data=44 ZI-data=3172  
 FromELF: creating hex file...
-"RTK20\RTK20.axf" - 0 Error(s), 0 Warning(s).
-Build Time Elapsed:  00:00:05
+"RTK20\RTK20.axf" - 0 Error(s), 5 Warning(s).
+Build Time Elapsed:  00:00:11

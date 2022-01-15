@@ -53,6 +53,6 @@ rtk20\menu.o: C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\Bin\..\include\limits.h
 rtk20\menu.o: C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\Bin\..\include\stdio.h
 rtk20\menu.o: .\Components\ws2812\ws2812.h
 rtk20\menu.o: .\Components\24cxx\24cxx.h
+rtk20\menu.o: ../Core/Inc/include.h
 rtk20\menu.o: ../Core/Inc/menu.h
 rtk20\menu.o: ../Core/Inc/myfun.h
-rtk20\menu.o: ../Core/Inc/include.h

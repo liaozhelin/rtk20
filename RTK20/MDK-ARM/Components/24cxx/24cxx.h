@@ -1,8 +1,7 @@
 #ifndef _24CXX_H
 #define _24CXX_H
 
-#include "main.h"
-#include "i2c.h"
+#include "include.h"
 
 #define AT24C01		127
 #define AT24C02		255
@@ -25,4 +24,5 @@ void AT24CXX_Read(uint16_t ReadAddr,uint8_t *pBuffer,uint16_t NumToRead);   	//´
 
 uint8_t AT24CXX_Check(void);  //¼ì²éÆ÷¼þ
 uint8_t AT24CXX_Init(void); //³õÊ¼»¯IIC
+uint8_t AT24CXX_Save(void); //±£´æÊý¾Ý
 #endif

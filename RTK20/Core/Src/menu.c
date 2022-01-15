@@ -33,7 +33,7 @@ void manualSurfaceMenu(u8g2_t *in){
         
     }
     else if(current_selection == U8X8_MSG_GPIO_MENU_DOWN){\
-        
+
     }
     // u8g2_DrawButtonUTF8(in,20,15,U8G2_BTN_BW2|U8G2_BTN_HCENTER|U8G2_BTN_INV|U8G2_BTN_SHADOW1,0,1,1,"+");
     // u8g2_DrawButtonUTF8(in,20,45,U8G2_BTN_BW2|U8G2_BTN_HCENTER|U8G2_BTN_INV|U8G2_BTN_SHADOW1,0,1,1,"-");
@@ -108,7 +108,7 @@ void monitorFun(u8g2_t *in){
 void peripheralFun(u8g2_t *in){
     uint8_t current_selection  = 0;
     const char *string_peripheralFun_title = "Peripheral";
-    const char *string_peripheralFun = "VoltageIn\nInCurrent\nBeep\nRGBLed\nUART\n-Restore-Factory-\n>Exit<";
+    const char *string_peripheralFun = "InVoltage\nInCurrent\nBeep\nRGBLed\nUART\n-Restore-Factory-\n>Exit<";
     u8g2_SetFont(in,u8g2_font_helvB10_tr);
     current_selection  = u8g2_UserInterfaceSelectionList(in,string_peripheralFun_title,1,string_peripheralFun);
     switch(current_selection){
