@@ -46,7 +46,7 @@ I (../Core/Inc/rtc.h)(0x61C46EDF)
 I (../Core/Inc/tim.h)(0x61C46EE0)
 I (../Core/Inc/usart.h)(0x61C46EE0)
 I (../Core/Inc/gpio.h)(0x61E2810D)
-I (.\Components\u8g2\csrc\oled.h)(0x61C53271)
+I (.\Components\u8g2\csrc\oled.h)(0x61E29895)
 I (.\Components\u8g2\csrc\u8g2.h)(0x61C30F7A)
 I (.\Components\u8g2\csrc\u8x8.h)(0x61C30F7A)
 I (C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\include\stdarg.h)(0x60252376)
@@ -55,7 +55,7 @@ I (C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (.\Components\ws2812\ws2812.h)(0x61E28A9A)
 I (.\Components\24cxx\24cxx.h)(0x61E28A7E)
 I (../Core/Inc/menu.h)(0x61E28B31)
-I (../Core/Inc/myfun.h)(0x61E2927C)
+I (../Core/Inc/myfun.h)(0x61E294A6)
 F (../Core/Src/gpio.c)(0x61E280CA)(--c99 -c --cpu Cortex-M0 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include -I .\Components\u8g2\csrc -I .\Components\u8g2\sys -I .\Components\ws2812 -I .\Components\24cxx-I.\RTE\_RTK20-IC:\Users\zhang\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\zhang\AppData\Local\Arm\Packs\Keil\STM32F0xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F030x6 -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F030x6-o rtk20\gpio.o --omf_browse rtk20\gpio.crf --depend rtk20\gpio.d)
 I (../Core/Inc/gpio.h)(0x61E2810D)
 I (../Core/Inc/main.h)(0x61E16AE1)
@@ -101,7 +101,7 @@ I (../Core/Inc/i2c.h)(0x61C46EDE)
 I (../Core/Inc/rtc.h)(0x61C46EDF)
 I (../Core/Inc/tim.h)(0x61C46EE0)
 I (../Core/Inc/usart.h)(0x61C46EE0)
-I (.\Components\u8g2\csrc\oled.h)(0x61C53271)
+I (.\Components\u8g2\csrc\oled.h)(0x61E29895)
 I (.\Components\u8g2\csrc\u8g2.h)(0x61C30F7A)
 I (.\Components\u8g2\csrc\u8x8.h)(0x61C30F7A)
 I (C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\include\stdarg.h)(0x60252376)
@@ -110,7 +110,7 @@ I (C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (.\Components\ws2812\ws2812.h)(0x61E28A9A)
 I (.\Components\24cxx\24cxx.h)(0x61E28A7E)
 I (../Core/Inc/menu.h)(0x61E28B31)
-I (../Core/Inc/myfun.h)(0x61E2927C)
+I (../Core/Inc/myfun.h)(0x61E294A6)
 F (../Core/Src/adc.c)(0x61C46EDD)(--c99 -c --cpu Cortex-M0 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include -I .\Components\u8g2\csrc -I .\Components\u8g2\sys -I .\Components\ws2812 -I .\Components\24cxx-I.\RTE\_RTK20-IC:\Users\zhang\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\zhang\AppData\Local\Arm\Packs\Keil\STM32F0xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F030x6 -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F030x6-o rtk20\adc.o --omf_browse rtk20\adc.crf --depend rtk20\adc.d)
 I (../Core/Inc/adc.h)(0x61C46EDD)
 I (../Core/Inc/main.h)(0x61E16AE1)
@@ -416,8 +416,8 @@ I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h)(0x611B5E10)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h)(0x611B5E10)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h)(0x611B5E10)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h)(0x611B5E10)
-F (..\Core\Src\myfun.c)(0x61E28DA4)(--c99 -c --cpu Cortex-M0 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include -I .\Components\u8g2\csrc -I .\Components\u8g2\sys -I .\Components\ws2812 -I .\Components\24cxx-I.\RTE\_RTK20-IC:\Users\zhang\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\zhang\AppData\Local\Arm\Packs\Keil\STM32F0xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F030x6 -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F030x6-o rtk20\myfun.o --omf_browse rtk20\myfun.crf --depend rtk20\myfun.d)
-I (../Core/Inc/myfun.h)(0x61E2927C)
+F (..\Core\Src\myfun.c)(0x61E2CA2B)(--c99 -c --cpu Cortex-M0 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include -I .\Components\u8g2\csrc -I .\Components\u8g2\sys -I .\Components\ws2812 -I .\Components\24cxx-I.\RTE\_RTK20-IC:\Users\zhang\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\zhang\AppData\Local\Arm\Packs\Keil\STM32F0xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F030x6 -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F030x6-o rtk20\myfun.o --omf_browse rtk20\myfun.crf --depend rtk20\myfun.d)
+I (../Core/Inc/myfun.h)(0x61E294A6)
 I (../Core/Inc/include.h)(0x61E28ACB)
 I (../Core/Inc/adc.h)(0x61C46EDD)
 I (../Core/Inc/main.h)(0x61E16AE1)
@@ -462,7 +462,7 @@ I (../Core/Inc/rtc.h)(0x61C46EDF)
 I (../Core/Inc/tim.h)(0x61C46EE0)
 I (../Core/Inc/usart.h)(0x61C46EE0)
 I (../Core/Inc/gpio.h)(0x61E2810D)
-I (.\Components\u8g2\csrc\oled.h)(0x61C53271)
+I (.\Components\u8g2\csrc\oled.h)(0x61E29895)
 I (.\Components\u8g2\csrc\u8g2.h)(0x61C30F7A)
 I (.\Components\u8g2\csrc\u8x8.h)(0x61C30F7A)
 I (C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\include\stdarg.h)(0x60252376)
@@ -471,7 +471,7 @@ I (C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (.\Components\ws2812\ws2812.h)(0x61E28A9A)
 I (.\Components\24cxx\24cxx.h)(0x61E28A7E)
 I (../Core/Inc/menu.h)(0x61E28B31)
-F (..\Core\Src\menu.c)(0x61E292C4)(--c99 -c --cpu Cortex-M0 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include -I .\Components\u8g2\csrc -I .\Components\u8g2\sys -I .\Components\ws2812 -I .\Components\24cxx-I.\RTE\_RTK20-IC:\Users\zhang\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\zhang\AppData\Local\Arm\Packs\Keil\STM32F0xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F030x6 -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F030x6-o rtk20\menu.o --omf_browse rtk20\menu.crf --depend rtk20\menu.d)
+F (..\Core\Src\menu.c)(0x61E2CA2B)(--c99 -c --cpu Cortex-M0 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include -I .\Components\u8g2\csrc -I .\Components\u8g2\sys -I .\Components\ws2812 -I .\Components\24cxx-I.\RTE\_RTK20-IC:\Users\zhang\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\zhang\AppData\Local\Arm\Packs\Keil\STM32F0xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F030x6 -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F030x6-o rtk20\menu.o --omf_browse rtk20\menu.crf --depend rtk20\menu.d)
 I (../Core/Inc/menu.h)(0x61E28B31)
 I (../Core/Inc/include.h)(0x61E28ACB)
 I (../Core/Inc/adc.h)(0x61C46EDD)
@@ -517,7 +517,7 @@ I (../Core/Inc/rtc.h)(0x61C46EDF)
 I (../Core/Inc/tim.h)(0x61C46EE0)
 I (../Core/Inc/usart.h)(0x61C46EE0)
 I (../Core/Inc/gpio.h)(0x61E2810D)
-I (.\Components\u8g2\csrc\oled.h)(0x61C53271)
+I (.\Components\u8g2\csrc\oled.h)(0x61E29895)
 I (.\Components\u8g2\csrc\u8g2.h)(0x61C30F7A)
 I (.\Components\u8g2\csrc\u8x8.h)(0x61C30F7A)
 I (C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\include\stdarg.h)(0x60252376)
@@ -525,7 +525,7 @@ I (C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\include\limits.h)(0x60252376)
 I (C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (.\Components\ws2812\ws2812.h)(0x61E28A9A)
 I (.\Components\24cxx\24cxx.h)(0x61E28A7E)
-I (../Core/Inc/myfun.h)(0x61E2927C)
+I (../Core/Inc/myfun.h)(0x61E294A6)
 F (../Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_adc.c)(0x611B5E10)(--c99 -c --cpu Cortex-M0 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include -I .\Components\u8g2\csrc -I .\Components\u8g2\sys -I .\Components\ws2812 -I .\Components\24cxx-I.\RTE\_RTK20-IC:\Users\zhang\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\zhang\AppData\Local\Arm\Packs\Keil\STM32F0xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F030x6 -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F030x6-o rtk20\stm32f0xx_hal_adc.o --omf_browse rtk20\stm32f0xx_hal_adc.crf --depend rtk20\stm32f0xx_hal_adc.d)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x611B5E10)
 I (../Core/Inc/stm32f0xx_hal_conf.h)(0x61C46EE1)
@@ -1318,14 +1318,16 @@ I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h)(0x611B5E10)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h)(0x611B5E10)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h)(0x611B5E10)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h)(0x611B5E10)
-F (.\Components\u8g2\csrc\oled.c)(0x61E0E65A)(--c99 -c --cpu Cortex-M0 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include -I .\Components\u8g2\csrc -I .\Components\u8g2\sys -I .\Components\ws2812 -I .\Components\24cxx-I.\RTE\_RTK20-IC:\Users\zhang\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\zhang\AppData\Local\Arm\Packs\Keil\STM32F0xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F030x6 -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F030x6-o rtk20\oled.o --omf_browse rtk20\oled.crf --depend rtk20\oled.d)
-I (Components\u8g2\csrc\oled.h)(0x61C53271)
+F (.\Components\u8g2\csrc\oled.c)(0x61E29B3E)(--c99 -c --cpu Cortex-M0 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include -I .\Components\u8g2\csrc -I .\Components\u8g2\sys -I .\Components\ws2812 -I .\Components\24cxx-I.\RTE\_RTK20-IC:\Users\zhang\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\zhang\AppData\Local\Arm\Packs\Keil\STM32F0xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F030x6 -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F030x6-o rtk20\oled.o --omf_browse rtk20\oled.crf --depend rtk20\oled.d)
+I (Components\u8g2\csrc\oled.h)(0x61E29895)
 I (Components\u8g2\csrc\u8g2.h)(0x61C30F7A)
 I (Components\u8g2\csrc\u8x8.h)(0x61C30F7A)
 I (C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\include\stdint.h)(0x6025237E)
 I (C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\include\stdarg.h)(0x60252376)
 I (C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\include\stddef.h)(0x6025237E)
 I (C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\include\limits.h)(0x60252376)
+I (../Core/Inc/include.h)(0x61E28ACB)
+I (../Core/Inc/adc.h)(0x61C46EDD)
 I (../Core/Inc/main.h)(0x61E16AE1)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal.h)(0x611B5E10)
 I (../Core/Inc/stm32f0xx_hal_conf.h)(0x61C46EE1)
@@ -1360,7 +1362,18 @@ I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h)(0x611B5E10)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h)(0x611B5E10)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h)(0x611B5E10)
 I (../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h)(0x611B5E10)
+I (../Core/Inc/dma.h)(0x61C46EDE)
 I (../Core/Inc/i2c.h)(0x61C46EDE)
+I (../Core/Inc/rtc.h)(0x61C46EDF)
+I (../Core/Inc/tim.h)(0x61C46EE0)
+I (../Core/Inc/usart.h)(0x61C46EE0)
+I (../Core/Inc/gpio.h)(0x61E2810D)
+I (.\Components\u8g2\csrc\oled.h)(0x61E29895)
+I (C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\include\stdio.h)(0x60252374)
+I (.\Components\ws2812\ws2812.h)(0x61E28A9A)
+I (.\Components\24cxx\24cxx.h)(0x61E28A7E)
+I (../Core/Inc/menu.h)(0x61E28B31)
+I (../Core/Inc/myfun.h)(0x61E294A6)
 F (.\Components\u8g2\csrc\u8g2_bitmap.c)(0x61C30F7A)(--c99 -c --cpu Cortex-M0 -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc -I ../Drivers/STM32F0xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F0xx/Include -I ../Drivers/CMSIS/Include -I .\Components\u8g2\csrc -I .\Components\u8g2\sys -I .\Components\ws2812 -I .\Components\24cxx-I.\RTE\_RTK20-IC:\Users\zhang\AppData\Local\Arm\Packs\ARM\CMSIS\5.8.0\CMSIS\Core\Include-IC:\Users\zhang\AppData\Local\Arm\Packs\Keil\STM32F0xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F0xx\Include-D__UVISION_VERSION="535" -D_RTE_ -DSTM32F030x6 -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F030x6-o rtk20\u8g2_bitmap.o --omf_browse rtk20\u8g2_bitmap.crf --depend rtk20\u8g2_bitmap.d)
 I (Components\u8g2\csrc\u8g2.h)(0x61C30F7A)
 I (Components\u8g2\csrc\u8x8.h)(0x61C30F7A)
@@ -2119,7 +2132,7 @@ I (../Core/Inc/rtc.h)(0x61C46EDF)
 I (../Core/Inc/tim.h)(0x61C46EE0)
 I (../Core/Inc/usart.h)(0x61C46EE0)
 I (../Core/Inc/gpio.h)(0x61E2810D)
-I (.\Components\u8g2\csrc\oled.h)(0x61C53271)
+I (.\Components\u8g2\csrc\oled.h)(0x61E29895)
 I (.\Components\u8g2\csrc\u8g2.h)(0x61C30F7A)
 I (.\Components\u8g2\csrc\u8x8.h)(0x61C30F7A)
 I (C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\include\stdarg.h)(0x60252376)
@@ -2128,4 +2141,4 @@ I (C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\include\stdio.h)(0x60252374)
 I (.\Components\ws2812\ws2812.h)(0x61E28A9A)
 I (.\Components\24cxx\24cxx.h)(0x61E28A7E)
 I (../Core/Inc/menu.h)(0x61E28B31)
-I (../Core/Inc/myfun.h)(0x61E2927C)
+I (../Core/Inc/myfun.h)(0x61E294A6)

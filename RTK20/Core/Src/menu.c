@@ -2,7 +2,7 @@
  * @Author: [LiaoZhelin]
  * @Date: 2022-01-13 17:08:37
  * @LastEditors: [LiaoZhelin]
- * @LastEditTime: 2022-01-15 17:24:20
+ * @LastEditTime: 2022-01-15 18:01:51
  * @Description: 
  */
 #include "menu.h"
@@ -35,18 +35,18 @@ void manualSurfaceMenu(u8g2_t *in){
 	  u8g2_DrawRBox(&u8g2,100,2,6,49,2);
 	  u8g2_SetFont(in,u8g2_font_helvB10_tr);
 	  u8g2_DrawStr(in,98,65,"P");
-	
-    u8g2_SendBuffer(&u8g2);
-	if(KEY_OK_RELEASE_L){
-				
-	}
-	else if(KEY_UP_RELEASE_S){
-        rtk20s.mannul.TempSet = ((rtk20s.mannul.TempSet < rtk20s.peripheralFun.MaxTemp)?(rtk20s.mannul.TempSet+1):rtk20s.mannul.TempSet);
-        KEY_UP_CLEAR;
-    }
-    else if(KEY_DOWN_RELEASE_S){
-        rtk20s.mannul.TempSet = ((rtk20s.mannul.TempSet > 0)?(rtk20s.mannul.TempSet-1):rtk20s.mannul.TempSet);
-        KEY_DOWN_CLEAR;
+      u8g2_SendBuffer(&u8g2);
+		if(KEY_OK_RELEASE_L){
+			rtk20s.flag.SettingFlag |= 0x01;
+			KEY_OK_CLEAR;
+		}
+		else if(KEY_UP_PUSH){
+            rtk20s.mannul.TempSet = ((rtk20s.mannul.TempSet < rtk20s.peripheralFun.MaxTemp)?(rtk20s.mannul.TempSet+1):rtk20s.mannul.TempSet);
+            KEY_UP_CLEAR;
+		}
+        else if(KEY_DOWN_PUSH){
+            rtk20s.mannul.TempSet = ((rtk20s.mannul.TempSet > 0)?(rtk20s.mannul.TempSet-1):rtk20s.mannul.TempSet);
+            KEY_DOWN_CLEAR;
     }
     // u8g2_DrawButtonUTF8(in,20,15,U8G2_BTN_BW2|U8G2_BTN_HCENTER|U8G2_BTN_INV|U8G2_BTN_SHADOW1,0,1,1,"+");
     // u8g2_DrawButtonUTF8(in,20,45,U8G2_BTN_BW2|U8G2_BTN_HCENTER|U8G2_BTN_INV|U8G2_BTN_SHADOW1,0,1,1,"-");
@@ -70,10 +70,12 @@ void modeFun(u8g2_t *in){
     current_selection  = u8g2_UserInterfaceSelectionList(in,string_modeFun_title,1,string_modeFun);
     switch(current_selection){
         case 1:
-
+            rtk20s.flag.SurfaceFlag = 0x01;
+				    rtk20s.flag.SettingFlag = 0X00;
             break;
         case 2:
-
+            rtk20s.flag.SurfaceFlag = 0x00;
+				    rtk20s.flag.SettingFlag = 0X00;
             break;
     }
 }
@@ -187,7 +189,7 @@ void settingMenu(u8g2_t *in){
             aboutFun(in);
             break;
         case 6:
-            loopFunFlag &= 0X7F;
+            rtk20s.flag.SettingFlag = 0X00;
             break;
         default:
             break;

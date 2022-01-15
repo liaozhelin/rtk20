@@ -57,8 +57,6 @@ typedef struct{
 extern RTK20_Static rtk20s;
 extern RTK20_Dynamic rtk20d;
 
-extern uint8_t loopFunFlag;
-
 void All_Init(void);
 void ON_Fun(void);
 void loopFun(u8g2_t *in);

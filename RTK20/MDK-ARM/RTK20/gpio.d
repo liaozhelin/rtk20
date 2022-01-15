@@ -50,9 +50,9 @@ rtk20\gpio.o: .\Components\u8g2\csrc\u8g2.h
 rtk20\gpio.o: .\Components\u8g2\csrc\u8x8.h
 rtk20\gpio.o: C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\Bin\..\include\stdarg.h
 rtk20\gpio.o: C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\Bin\..\include\limits.h
+rtk20\gpio.o: ../Core/Inc/include.h
 rtk20\gpio.o: C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\Bin\..\include\stdio.h
 rtk20\gpio.o: .\Components\ws2812\ws2812.h
 rtk20\gpio.o: .\Components\24cxx\24cxx.h
-rtk20\gpio.o: ../Core/Inc/include.h
 rtk20\gpio.o: ../Core/Inc/menu.h
 rtk20\gpio.o: ../Core/Inc/myfun.h
