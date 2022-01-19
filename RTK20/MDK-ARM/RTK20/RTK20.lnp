@@ -1,5 +1,8 @@
 --cpu Cortex-M0
 "rtk20\startup_stm32f030x6.o"
+"rtk20\myfun.o"
+"rtk20\menu.o"
+"rtk20\controller.o"
 "rtk20\main.o"
 "rtk20\gpio.o"
 "rtk20\adc.o"
@@ -10,8 +13,6 @@
 "rtk20\usart.o"
 "rtk20\stm32f0xx_it.o"
 "rtk20\stm32f0xx_hal_msp.o"
-"rtk20\myfun.o"
-"rtk20\menu.o"
 "rtk20\stm32f0xx_hal_adc.o"
 "rtk20\stm32f0xx_hal_adc_ex.o"
 "rtk20\stm32f0xx_hal_rcc.o"

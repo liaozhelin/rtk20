@@ -22,20 +22,44 @@ Dialog DLL:      TARMCM1.DLL V1.14.4.0
  
 <h2>Project:</h2>
 c:\Users\zhang\Desktop\rtk20-heat-bed\RTK20\MDK-ARM\RTK20.uvprojx
-Project File Date:  01/15/2022
+Project File Date:  01/16/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Program Files\Keil\Keil_ARM\ARM\ARMCC\Bin'
 Build target 'RTK20'
-compiling menu.c...
-..\Core\Src\menu.c(19): warning:  #177-D: variable "current_selection"  was declared but never referenced
-      uint8_t current_selection  = 0;
-..\Core\Src\menu.c: 1 warning, 0 errors
-compiling myfun.c...
-linking...
-Program Size: Code=21404 RO-data=2656 RW-data=36 ZI-data=3180  
-FromELF: creating hex file...
-"RTK20\RTK20.axf" - 0 Error(s), 1 Warning(s).
+compiling controller.c...
+..\Core\Src\controller.c(14): error:  #145: variable "atemp"  may not be initialized
+      double atemp[2 * (in->rank + 1)] = { 0 }, b[in->rank_ + 1] = { 0 }, a[in->rank + 1][in->rank + 1];
+..\Core\Src\controller.c(14): error:  #136: struct "<unnamed>"  has no field "rank_"
+      double atemp[2 * (in->rank + 1)] = { 0 }, b[in->rank_ + 1] = { 0 }, a[in->rank + 1][in->rank + 1];
+..\Core\Src\controller.c(14): error:  #145: variable "b"  may not be initialized
+      double atemp[2 * (in->rank + 1)] = { 0 }, b[in->rank_ + 1] = { 0 }, a[in->rank + 1][in->rank + 1];
+..\Core\Src\controller.c(17): error:  #20: identifier "maxn" is undefined
+      for (i = 0; i < maxn; i++) {  
+..\Core\Src\controller.c(18): error:  #20: identifier "x" is undefined
+          atemp[1] += x[i];
+..\Core\Src\controller.c(19): warning:  #223-D: function "pow" declared implicitly
+          atemp[2] += pow(x[i], 2);
+..\Core\Src\controller.c(24): error:  #20: identifier "y" is undefined
+          b[0] += y[i];
+..\Core\Src\controller.c(29): error:  #20: identifier "maxn" is undefined
+      atemp[0] = maxn;
+..\Core\Src\controller.c(30): error:  #20: identifier "rank_" is undefined
+      for (i = 0; i < rank_ + 1; i++) {  //构建线性方程组系数矩阵，b[]不变
+..\Core\Src\controller.c(35): error:  #20: identifier "rank_" is undefined
+      for (k = 0; k < rank_ + 1 - 1; k++) {  //n - 1�?
+..\Core\Src\controller.c(39): warning:  #223-D: function "fabs" declared implicitly
+              if (fabs(a[i][k]) > mainelement) {
+..\Core\Src\controller.c(58): error:  #20: identifier "rank_" is undefined
+      b[rank_ + 1 - 1] /= a[rank_ + 1 - 1][rank_ + 1 - 1];  //回代过程
+..\Core\Src\controller.c(64): error:  #20: identifier "k0_3" is undefined
+  	*k0_3 = b[0];//偏移
+..\Core\Src\controller.c(66): error:  #20: identifier "k2" is undefined
+  	k2 = b[2];//二次项系�?
+..\Core\Src\controller.c(67): error:  #20: identifier "k3" is undefined
+  	k3 = b[3];//三次项系�?
+..\Core\Src\controller.c: 2 warnings, 13 errors
+"RTK20\RTK20.axf" - 13 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -59,7 +83,8 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.5.0
       Include file:  CMSIS\Core\Include\tz_context.h
-Build Time Elapsed:  00:00:08
+Target not created.
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

@@ -19,6 +19,14 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "adc.h"
+#include "dma.h"
+#include "i2c.h"
+#include "rtc.h"
+#include "tim.h"
+#include "usart.h"
+#include "gpio.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "include.h"
@@ -61,6 +69,10 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+	RTC_TimeTypeDef rtctime;
+	rtctime.Seconds = 00;
+	rtctime.Minutes = 01;
+	rtctime.Hours = 01;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -76,7 +88,8 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-
+  rtk20s.flag.SettingFlag = 0;
+  rtk20s.flag.SurfaceFlag = 0;
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
@@ -89,10 +102,11 @@ int main(void)
   MX_USART1_UART_Init();
   MX_TIM17_Init();
   MX_RTC_Init();
+  MX_TIM16_Init();
   /* USER CODE BEGIN 2 */
+	HAL_Delay(50);
 	//ON_Fun();
 	POWER_ON;
-	HAL_Delay(50);
 	All_Init();
 	TIM14->PSC = 1000;
 	HAL_TIM_PWM_Start(&htim14,TIM_CHANNEL_1);
@@ -103,12 +117,18 @@ int main(void)
 	HAL_Delay(100);
 	HAL_TIM_PWM_Stop(&htim14,TIM_CHANNEL_1);
 	
-  AT24CXX_Save();
+	HAL_RTC_SetTime(&hrtc,&rtctime,RTC_FORMAT_BIN);
+	
+	HAL_TIM_Base_Start_IT(&htim16); 
+	//HAL_RTC_GetTime(&hrtc,);
+  /* USER CODE END 2 */
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
+
     /* USER CODE BEGIN 3 */
     loopFun(&u8g2);
 

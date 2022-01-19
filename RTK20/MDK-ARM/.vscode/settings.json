@@ -15,6 +15,7 @@
         "xiosbase": "c",
         "myfun.h": "c",
         "adc.h": "c",
-        "include.h": "c"
+        "include.h": "c",
+        "controller.h": "c"
     }
 }

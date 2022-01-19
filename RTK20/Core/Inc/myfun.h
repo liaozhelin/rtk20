@@ -2,7 +2,7 @@
  * @Author: [LiaoZhelin]
  * @Date: 2021-12-24 10:20:06
  * @LastEditors: [LiaoZhelin]
- * @LastEditTime: 2022-01-15 17:23:08
+ * @LastEditTime: 2022-01-15 22:08:06
  * @Description: 
  */
 #ifndef __MYFUN_H__ 
@@ -38,6 +38,9 @@ typedef struct{
         unsigned Reserve1:2;
         unsigned Reserve2:2;
     }flag;
+//		struct{
+//			
+//		}time;
 }RTK20_Static;
 
 typedef struct{
@@ -49,9 +52,16 @@ typedef struct{
         unsigned Reserve1:7;
     }key;
     struct{
-        float Vin;
-        float Iin;
+        float Vbus;
+        float Ibus;
+        float TempBed;
+        float TempMcu;
     }sensor;
+		struct{
+			unsigned Time100ms:1;
+			unsigned Time1000ms:1;
+			unsigned Reserve1:6;
+		}timetask;
 }RTK20_Dynamic;
 
 extern RTK20_Static rtk20s;

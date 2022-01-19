@@ -38,7 +38,7 @@ extern "C" {
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
 
-//uint8_t loopFunFlag = 0x01;//任务函数标志位
+//uint8_t loopFunFlag = 0x01;//任务函数标志�?
 
 /* USER CODE END ET */
 

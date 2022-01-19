@@ -2,13 +2,10 @@
  * @Author: [LiaoZhelin]
  * @Date: 2021-12-24 10:20:34
  * @LastEditors: [LiaoZhelin]
- * @LastEditTime: 2022-01-15 21:20:07
+ * @LastEditTime: 2022-01-15 22:27:45
  * @Description: 
  */
 #include "myfun.h"
-
-#define rank_ 2  //阶数
-#define maxn 10  //采样个数(标定最大点数)
 
 RTK20_Static rtk20s;
 RTK20_Dynamic rtk20d;
@@ -16,7 +13,7 @@ RTK20_Dynamic rtk20d;
 
 void All_Init(void){
 	u8g2Init(&u8g2);
-  	helloMenu(&u8g2);
+	helloMenu(&u8g2);
 	HAL_DMA_Init(&hdma_adc);
 	__HAL_LINKDMA(&hadc,DMA_Handle,hdma_adc);
 	HAL_ADC_Start_DMA(&hadc,(uint32_t*)&ADC_ConvertedValue,80);
@@ -69,6 +66,13 @@ void ON_Fun(void){
 		KEY_OK_CLEAR;
 }
 
+static void TimeTask(void){
+	if(rtk20d.timetask.Time1000ms == 1){
+		AT24CXX_Save();
+		rtk20d.timetask.Time1000ms = 0;
+	}
+}
+
 void loopFun(u8g2_t *in){
   if(rtk20s.flag.SettingFlag & 0X01){
     settingMenu(in);
@@ -79,68 +83,36 @@ void loopFun(u8g2_t *in){
   else if(rtk20s.flag.SurfaceFlag == 0X01){
     reflowSurfaceMenu(in);
   }
+	TimeTask();
+} 
+
+
+void USER_ADC_CAL(void){
+	
+	rtk20d.sensor.Vbus = (float)ADC_AvergedValue[1]*0.0088623;
+	rtk20d.sensor.Ibus = (float)ADC_AvergedValue[2]*0.0004833;
+	rtk20d.sensor.TempMcu = (357.558 - ((float)ADC_AvergedValue[3]*0.187209));  
 }
 
 
 
-//*********************最小二乘法线性拟合算法 2021-08-03*********************//
-	
-// void FUN_Linear_Fitting(void){
-	
-//     double atemp[2 * (rank_ + 1)] = { 0 }, b[rank_ + 1] = { 0 }, a[rank_ + 1][rank_ + 1];
-// 	double btemp;
-//     int i, j, k;
-//     for (i = 0; i < maxn; i++) {  
-//         atemp[1] += x[i];
-//         atemp[2] += pow(x[i], 2);
-//         atemp[3] += pow(x[i], 3);
-//         atemp[4] += pow(x[i], 4);
-//         atemp[5] += pow(x[i], 5);
-//         atemp[6] += pow(x[i], 6);
-//         b[0] += y[i];
-//         b[1] += x[i] * y[i];
-//         b[2] += pow(x[i], 2) * y[i];
-//         b[3] += pow(x[i], 3) * y[i];
-//     }
-//     atemp[0] = maxn;
-//     for (i = 0; i < rank_ + 1; i++) {  //构建线性方程组系数矩阵，b[]不变
-//         k = i;
-//         for (j = 0; j < rank_ + 1; j++)  a[i][j] = atemp[k++];
-//     }
-//     //以下为高斯列主元消去法解线性方程组
-//     for (k = 0; k < rank_ + 1 - 1; k++) {  //n - 1列
-//         int column = k;
-//         double mainelement = a[k][k];
-//         for (i = k; i < rank_ + 1; i++)  //找主元素
-//             if (fabs(a[i][k]) > mainelement) {
-//                 mainelement = fabs(a[i][k]);
-//                 column = i;
-//             }
-//         for (j = k; j < rank_ + 1; j++) {  //交换两行
-//             double atemp = a[k][j];
-//             a[k][j] = a[column][j];
-//             a[column][j] = atemp;
-//         }
-//         btemp = b[k];
-//         b[k] = b[column];
-//         b[column] = btemp;
-//         for (i = k + 1; i < rank_ + 1; i++) {  //消元过程
-//             double Mik = a[i][k] / a[k][k];
-//             for (j = k; j < rank_ + 1; j++)  a[i][j] -= Mik * a[k][j];
-//             b[i] -= Mik * b[k];
-//         }
-//     }
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+	static uint16_t timeCount = 0;
+	if(htim == &htim16){
+			
+		//10MS任务
+		if(!(timeCount%10)){
+			//100MS任务
+			rtk20d.timetask.Time100ms = 1;
+			USER_ADC_CAL();
+		}
+		if(!(timeCount %100)){
+			//1000MS任务
+			rtk20d.timetask.Time1000ms = 1;
+			//printf("TimeTask1s\r\n");
+		}
+		timeCount = (timeCount<1000?timeCount+1:0);//10S
+	}
+}
 
-//     b[rank_ + 1 - 1] /= a[rank_ + 1 - 1][rank_ + 1 - 1];  //回代过程
-//     for (i = rank_ + 1 - 2; i >= 0; i--) {
-//         double sum = 0;
-//         for (j = i + 1; j < rank_ + 1; j++)  sum += a[i][j] * b[j];
-//         b[i] = (b[i] - sum) / a[i][i];
-//     }
-// 	k0 = b[0];//偏移
-// 	k1 = b[1];//一次项系数
-// 	k2 = b[2];//二次项系数
-// 	k3 = b[3];//三次项系数
-// 	printf("P(x) = %f%+fx%+fx^2%+fx^3\n\n", b[0], b[1], b[2], b[3]);
-	
-// }
+

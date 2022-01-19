@@ -116,4 +116,3 @@ int fputc(int ch,FILE *f)
     HAL_UART_Transmit(&huart1,temp,1,2);
 }
 /* USER CODE END 1 */
-

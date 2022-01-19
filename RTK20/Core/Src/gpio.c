@@ -65,7 +65,7 @@ void MX_GPIO_Init(void)
   HAL_GPIO_Init(ON_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PAPin PAPin */
-  GPIO_InitStruct.Pin = KEY_UP_Pin | KEY_DOWN_Pin;
+  GPIO_InitStruct.Pin = KEY_UP_Pin|KEY_DOWN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -76,6 +76,7 @@ void MX_GPIO_Init(void)
 
   HAL_NVIC_SetPriority(EXTI4_15_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI4_15_IRQn);
+
 }
 
 /* USER CODE BEGIN 2 */
