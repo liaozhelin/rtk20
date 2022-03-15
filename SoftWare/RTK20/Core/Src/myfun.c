@@ -94,14 +94,14 @@ void USER_ADC_CAL(void){
 }
 
 void USER_ADC_TEMP_CAL(void){
+	
 	//(float)ADC_AvergedValue[0] -  
+	
 }
 
-	
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	static uint16_t timeCount = 0;
 	if(htim == &htim16){
-			
 		//10MS任务
 		if(!(timeCount%10)){
 			//100MS任务
@@ -114,6 +114,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 			//printf("TimeTask1s\r\n");
 		}
 		timeCount = (timeCount<1000?timeCount+1:0);//10S
+	}
+	if(htim == &htim1){
+		//timetask
 	}
 }
 

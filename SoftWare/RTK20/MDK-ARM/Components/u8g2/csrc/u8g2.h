@@ -1584,7 +1584,7 @@ uint8_t u8g2_UserInterfaceSelectionList(u8g2_t *u8g2, const char *title, uint8_t
 
 /*==========================================*/
 /* u8g2_message.c */
-uint8_t u8g2_UserInterfaceMessage(u8g2_t *u8g2, const char *title1, const char *title2, const char *title3, const char *buttons,uint8_t cursor_in);
+uint8_t u8g2_UserInterfaceMessage(u8g2_t *u8g2, const char *title1, const char *title2, const char *title3, const char *buttons,uint8_t cursor_in,uint8_t fun);
 
 /*==========================================*/
 /* u8g2_input_value.c */

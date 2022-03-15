@@ -35,6 +35,9 @@
 
 #include "u8g2.h"
 
+#include "adc.h"
+#include "stdio.h"
+
 #define SPACE_BETWEEN_BUTTONS_IN_PIXEL 6
 #define SPACE_BETWEEN_TEXT_AND_BUTTONS_IN_PIXEL 3
 
@@ -95,8 +98,9 @@ uint8_t u8g2_draw_button_line(u8g2_t *u8g2, u8g2_uint_t y, u8g2_uint_t w, uint8_
     u8g2_SetFontDirection(u8g2, 0);
     u8g2_SetFontPosBaseline(u8g2);
 */
+void u8g2_UserInterfaceMessageFun(u8g2_t *u8g2,uint8_t fun);
 
-uint8_t u8g2_UserInterfaceMessage(u8g2_t *u8g2, const char *title1, const char *title2, const char *title3, const char *buttons,uint8_t cursor_in)
+uint8_t u8g2_UserInterfaceMessage(u8g2_t *u8g2, const char *title1, const char *title2, const char *title3, const char *buttons,uint8_t cursor_in,uint8_t fun)
 {
   uint8_t height;
   uint8_t line_height;
@@ -170,28 +174,43 @@ uint8_t u8g2_UserInterfaceMessage(u8g2_t *u8g2, const char *title1, const char *
 	  
       for(;;)
       {
-	    event = u8x8_GetMenuEvent(u8g2_GetU8x8(u8g2));
-	    if ( event == U8X8_MSG_GPIO_MENU_SELECT )
-	      return cursor+1;
-	    else if ( event == U8X8_MSG_GPIO_MENU_HOME )
-	      return 0;
-	    else if ( event == U8X8_MSG_GPIO_MENU_NEXT || event == U8X8_MSG_GPIO_MENU_DOWN )
-	    {
-	      cursor++;
-	      if ( cursor >= button_cnt )
-		cursor = 0;
-	      break;
-	    }
-	    else if ( event == U8X8_MSG_GPIO_MENU_PREV || event == U8X8_MSG_GPIO_MENU_UP )
-	    {
-	      if ( cursor == 0 )
-		cursor = button_cnt;
-	      cursor--;
-	      break;
-	    }    
+				event = u8x8_GetMenuEvent(u8g2_GetU8x8(u8g2));
+				if ( event == U8X8_MSG_GPIO_MENU_SELECT )
+					return cursor+1;
+				else if ( event == U8X8_MSG_GPIO_MENU_HOME )
+					return 0;
+				else if ( event == U8X8_MSG_GPIO_MENU_NEXT || event == U8X8_MSG_GPIO_MENU_DOWN )
+				{
+					cursor++;
+					if ( cursor >= button_cnt )
+				cursor = 0;
+					break;
+				}
+				else if ( event == U8X8_MSG_GPIO_MENU_PREV || event == U8X8_MSG_GPIO_MENU_UP )
+				{
+					if ( cursor == 0 )
+					cursor = button_cnt;
+					cursor--;
+					break;
+				}
+				u8g2_UserInterfaceMessageFun(u8g2,fun);//USER FLASH FUN
       }
   }
   /* never reached */
   //return 0;
 }
 
+void u8g2_UserInterfaceMessageFun(u8g2_t *u8g2,uint8_t fun){
+	  char buf[20];
+		switch(fun){
+			//温度校准界面刷新ADC原始值
+			case 1:
+				sprintf(buf,"%d",ADC_AvergedValue[0]);
+			  u8g2_SetDrawColor(u8g2,0);
+			  u8g2_DrawBox(u8g2,80,15,50,14);
+			  u8g2_SetDrawColor(u8g2,1);
+				u8g2_DrawStr(u8g2, 80, 27, buf);
+				u8g2_SendBuffer(u8g2);
+			break;
+		}
+}

@@ -6,28 +6,45 @@
  * @Description: 
  */
 #include "controller.h"
-#include "math.h"
-#define rank_ 3  //阶数
-#define maxn 10  //采样个数(标定最大点数)
+//#include "math.h"
 
-const double tempRule[20]={30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,220,210,220}; //校准标定数据，20个点
+const uint8_t tempRule[20]={25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215}; //校准标定数据，20个点
 	
+float pow_m(float A,uint8_t B){
+	if(B==2){
+		return (A*A);
+	}
+	else if(B==3){
+		return (A*A*A);
+	}
+	else{
+		return A;
+	}
+}
+
+float fabs_m(float A){
+	if(A>0){
+		return A;
+	}
+	else{
+		return (-A);
+	}
+}
+
 //*********************最小二乘法线性拟合算法 2021-08-03*********************//
-void FUN_Linear_Fitting(double *in,double *kout){
-  double atemp[2*(rank_ + 1)]={ 0 }, b[rank_ + 1] = { 0 }, a[rank_ + 1][rank_ + 1];
-	double btemp;
+void FUN_Linear_Fitting(float *in,float *kout){
+  float atemp[2*(rank_ + 1)]={ 0 }, b[rank_ + 1] = { 0 }, a[rank_ + 1][rank_ + 1];
+	float btemp;
   int i, j, k;
     for (i = 0; i < maxn; i++) {  
         atemp[1] += in[i];
-        atemp[2] += pow(in[i], 2);
-        atemp[3] += pow(in[i], 3);
-//        atemp[4] += pow(in[i], 4);
-//        atemp[5] += pow(in[i], 5);
-//        atemp[6] += pow(in[i], 6);
+        atemp[2] += pow_m(in[i], 2);
+        atemp[3] += pow_m(in[i], 3);
+
         b[0] += tempRule[i];
         b[1] += in[i] * tempRule[i];
-        b[2] += pow(in[i], 2) * tempRule[i];
-        b[3] += pow(in[i], 3) * tempRule[i];
+        b[2] += pow_m(in[i], 2) * tempRule[i];
+        b[3] += pow_m(in[i], 3) * tempRule[i];
     }
     atemp[0] = maxn;
     for (i = 0; i < rank_ + 1; i++) {  //构建线性方程组系数矩阵，b[]不变
@@ -37,14 +54,14 @@ void FUN_Linear_Fitting(double *in,double *kout){
     //以下为高斯列主元消去法解线性方程组
     for (k = 0; k < rank_ + 1 - 1; k++) {  //n - 1列
         int column = k;
-        double mainelement = a[k][k];
+        float mainelement = a[k][k];
         for (i = k; i < rank_ + 1; i++)  //找主元素
-            if (fabs(a[i][k]) > mainelement) {
-                mainelement = fabs(a[i][k]);
+            if (fabs_m(a[i][k]) > mainelement) {
+                mainelement = fabs_m(a[i][k]);
                 column = i;
             }
         for (j = k; j < rank_ + 1; j++) {  //交换两行
-            double atemp = a[k][j];
+            float atemp = a[k][j];
             a[k][j] = a[column][j];
             a[column][j] = atemp;
         }
@@ -52,7 +69,7 @@ void FUN_Linear_Fitting(double *in,double *kout){
         b[k] = b[column];
         b[column] = btemp;
         for (i = k + 1; i < rank_ + 1; i++) {  //消元过程
-            double Mik = a[i][k] / a[k][k];
+            float Mik = a[i][k] / a[k][k];
             for (j = k; j < rank_ + 1; j++)  a[i][j] -= Mik * a[k][j];
             b[i] -= Mik * b[k];
         }
@@ -60,7 +77,7 @@ void FUN_Linear_Fitting(double *in,double *kout){
 
     b[rank_ + 1 - 1] /= a[rank_ + 1 - 1][rank_ + 1 - 1];  //回代过程
     for (i = rank_ + 1 - 2; i >= 0; i--) {
-        double sum = 0;
+        float sum = 0;
         for (j = i + 1; j < rank_ + 1; j++)  sum += a[i][j] * b[j];
         b[i] = (b[i] - sum) / a[i][i];
     }
@@ -71,3 +88,5 @@ void FUN_Linear_Fitting(double *in,double *kout){
 	//printf("P(x) = %f%+fx%+fx^2%+fx^3\n\n", b[0], b[1], b[2], b[3]);
 	
 }
+
+

@@ -6,7 +6,7 @@
  * @Description: 
  */
 #include "menu.h"
-
+#include "string.h"
 void helloMenu(u8g2_t *in)
 {
     u8g2_ClearBuffer(in);
@@ -18,7 +18,6 @@ void helloMenu(u8g2_t *in)
 
 void manualSurfaceMenu(u8g2_t *in)
 {
-    uint8_t current_selection = 0;
     char oled_buff[10] = {0};
     u8g2_ClearBuffer(in);
 
@@ -93,43 +92,83 @@ void calibration(u8g2_t *in)
 		const char *string_titile1 = "It has 20 Points";
 		const char *string_titile2 = "Using TempMeter";
 	  const char *string_titile3 = "Follow Guidance";
+
 		uint8_t current_selection = 0;  
-		u8g2_SetFontRefHeightAll(in);
-	  current_selection = u8g2_UserInterfaceMessage(in,string_titile1,string_titile2,string_titile3,string_interfaceMessage1,0);
-		switch(current_selection){
-			case 1:
-				for(;;){
-					static uint8_t tempRuleNum = 0;
-					static uint8_t cur = 0;
-					static uint16_t conRef = 1000;
-					char buf_title1[20],buf_title2[20],buf_title3[20];
-					sprintf(buf_title1,"Desire: %.0fC",tempRule[tempRuleNum]);
-					sprintf(buf_title2,"RareADC:%d",ADC_AvergedValue[0]);
-					sprintf(buf_title3,"ConRef :%d",conRef);
-					current_selection = u8g2_UserInterfaceMessage(in,buf_title1,buf_title2,buf_title3," +\n - \n save \n quit ",cur);
-					switch(current_selection){
-						case 1:
-							cur = 0;
-							conRef = (conRef>4094?4094:conRef+1);
-							break;
-						case 2:
-							cur = 1;
-							conRef = (conRef<0?0:conRef-1);
-							break;
-						case 3:
-							tempRuleNum = (tempRuleNum>19?19:tempRuleNum+1);
-						  cur = 0;
-							break;
-						case 4:
+		for(;;){
+			current_selection = u8g2_UserInterfaceMessage(in,string_titile1,string_titile2,string_titile3,string_interfaceMessage1,0,0);
+			if(current_selection==1){
+					for(;;){
+						float Kout[rank_+1],Yin[20];
+						static uint8_t tempRuleNum = 0;
+						static uint8_t cur = 0;
+						static uint16_t conRef = 1000;
+						char buf_title1[30],buf_title3[30];
+						const char *buf_title2 ="RareAD :          ";
+						sprintf(buf_title1,"Desire : %d C",tempRule[tempRuleNum]);
+						sprintf(buf_title3,"ConRef : %d",conRef);
+						current_selection = u8g2_UserInterfaceMessage(in,buf_title1,buf_title2,buf_title3," + \n - \n save \n quit ",cur,1);
+						switch(current_selection){
+							//increase
+							case 1:
+								cur = 0;
+								conRef = (conRef>4094?4094:conRef+1);
+								break;
+							//decrease
+							case 2:
+								cur = 1;
+								conRef = (conRef<1?1:conRef-1);
+								break;
+							//save
+							case 3:
+								Yin[tempRuleNum] = conRef;
+								tempRuleNum = (tempRuleNum>19?19:tempRuleNum+1);
+								memset(buf_title1,0,sizeof(buf_title1));
+							  memset(buf_title3,0,sizeof(buf_title3));
+							  if(tempRuleNum==20){
+									 for(;;){
+										 const char *buf_title_cal = "Cal-K\nSave\nquit";
+										 current_selection = u8g2_UserInterfaceMessage(in,"Calibrate-Cal",buf_title1,buf_title3,buf_title_cal,cur,0);
+										 switch(current_selection){
+											 //Calculate L
+											 case 1:
+												 FUN_Linear_Fitting(Yin,Kout);
+											   HAL_Delay(100);
+												 sprintf(buf_title1,"%.04f %.04f",Kout[0],Kout[1]);
+												 sprintf(buf_title3,"%.04f %.04f",Kout[2],Kout[3]);
+//											   u8g2_DrawStr(in,0,16, buf_title1);
+//											   u8g2_DrawStr(in,0,32, buf_title3);
+//				                 u8g2_SendBuffer(in);
+												 break;
+											 //Save K to EEPROM
+											 case 2:
+												 rtk20s.tempCalibrate.K0 = Kout[0];
+												 rtk20s.tempCalibrate.K1 = Kout[1];
+												 rtk20s.tempCalibrate.K2 = Kout[2];
+												 rtk20s.tempCalibrate.K3 = Kout[3];
+												 HAL_Delay(500); //wait date to save
+												 memset(buf_title1,0,sizeof(buf_title1));
+							           memset(buf_title3,0,sizeof(buf_title3));
+											   sprintf(buf_title1,"Save Success!");
+												 sprintf(buf_title3,"Please Quit");
+												 break;
+											 
+										 }
+										 //Exit
+										 if(current_selection==3)
+												 break;
+									 }
+								}
+								cur = 0;
+								break;
+						}
+						//exit
+						if(current_selection==4)
 							break;
 					}
-					//fitting 
-				}
+			}
+			//exit
+			if(current_selection==2)
 				break;
-			case 2:
-				//exit
-				break;
-			
 		}
 }
 
@@ -192,12 +231,10 @@ void peripheralFun(u8g2_t *in)
     switch (current_selection)
     {
 			case 1:
-			
 					break;
 			case 2:
 					break;
 			case 3:
-					
 					break;
 			case 4:
 					for (;;)
@@ -236,18 +273,21 @@ void peripheralFun(u8g2_t *in)
 					}
 					break;
 			case 6:
-					const char *string_uartFun_title = "UART";
-					const char *string_uartFun = "SEND_ON\nSEND_OFF";
-					current_selection = u8g2_UserInterfaceSelectionList(in, string_uartFun_title, 1, string_uartFun);
-					if (current_selection == 1)
+					for (;;)
 					{
-							rtk20s.peripheralFun.UARTMode = 1;
-							break;
-					}
-					else if (current_selection == 2)
-					{
-							rtk20s.peripheralFun.UARTMode = 0;
-							break;
+						const char *string_uartFun_title = "UART";
+						const char *string_uartFun = "SEND_ON\nSEND_OFF";
+						current_selection = u8g2_UserInterfaceSelectionList(in, string_uartFun_title, 1, string_uartFun);
+						if (current_selection == 1)
+						{
+								rtk20s.peripheralFun.UARTMode = 1;
+								break;
+						}
+						else if (current_selection == 2)
+						{
+								rtk20s.peripheralFun.UARTMode = 0;
+								break;
+						}
 					}
 					break;
 			case 7:
@@ -287,7 +327,7 @@ void settingMenu(u8g2_t *in)
     const char *string_settingMenu_title = "RTK20 Setting";
     const char *string_settingMenu = "Mode\nCalibration\nMonitor\nPeripheral\nAbout\n>Exit<";
     u8g2_SetFont(in, u8g2_font_helvB10_tr);
-    current_selection = u8g2_UserInterfaceSelectionList(in, string_settingMenu_title, 1, string_settingMenu);
+    current_selection = u8g2_UserInterfaceSelectionList(in, string_settingMenu_title, 0, string_settingMenu);
     switch (current_selection)
     {
     case 1:

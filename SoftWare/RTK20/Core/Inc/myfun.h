@@ -37,6 +37,12 @@ typedef struct{
         unsigned Reserve1:2;
         unsigned Reserve2:2;
     }flag;
+		struct{
+				float K0; //fitting parements
+				float K1;
+				float K2;
+				float K3;
+		}tempCalibrate;
 //		struct{
 //			
 //		}time;
@@ -69,6 +75,5 @@ extern RTK20_Dynamic rtk20d;
 void All_Init(void);
 void ON_Fun(void);
 void loopFun(u8g2_t *in);
-
 
 #endif

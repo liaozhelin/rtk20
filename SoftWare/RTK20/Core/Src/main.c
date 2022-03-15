@@ -103,6 +103,7 @@ int main(void)
   MX_TIM17_Init();
   MX_RTC_Init();
   MX_TIM16_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
 	HAL_Delay(50);
 	//ON_Fun();
