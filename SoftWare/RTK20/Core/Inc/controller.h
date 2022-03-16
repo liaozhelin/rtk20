@@ -11,9 +11,10 @@
 #include "include.h"
 
 #define rank_ 3  //阶数
-#define maxn 10  //采样个数(标定最大点数)
+#define maxn 20  //采样个数(标定最大点数)
 
-extern const uint8_t tempRule[20];
+extern const float tempRule[20];
+extern float pow_m(float A,uint8_t B);
 void FUN_Linear_Fitting(float *in,float *kout);
 
 #endif

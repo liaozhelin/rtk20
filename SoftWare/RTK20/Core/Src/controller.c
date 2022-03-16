@@ -8,39 +8,38 @@
 #include "controller.h"
 //#include "math.h"
 
-const uint8_t tempRule[20]={25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215}; //校准标定数据，20个点
+const float tempRule[20]={25,35,45,55,65,75,85,95,105,115,125,135,145,155,165,175,185,195,205,215}; //校准标定数据，20个点
 	
 float pow_m(float A,uint8_t B){
-	if(B==2){
-		return (A*A);
-	}
-	else if(B==3){
-		return (A*A*A);
+	float value = 1;
+	int i = 1;
+	if(B==0){
+		value=1;
 	}
 	else{
-		return A;
+		while(i++<=B){
+			value*=A;
+		}
 	}
+	return value;
 }
 
 float fabs_m(float A){
-	if(A>0){
-		return A;
-	}
-	else{
-		return (-A);
-	}
+	return (A<0?-A:A);
 }
 
 //*********************最小二乘法线性拟合算法 2021-08-03*********************//
 void FUN_Linear_Fitting(float *in,float *kout){
-  float atemp[2*(rank_ + 1)]={ 0 }, b[rank_ + 1] = { 0 }, a[rank_ + 1][rank_ + 1];
+  double atemp[2*(rank_ + 1)]={ 0 }, b[rank_ + 1] = { 0 }, a[rank_ + 1][rank_ + 1];
 	float btemp;
   int i, j, k;
     for (i = 0; i < maxn; i++) {  
         atemp[1] += in[i];
         atemp[2] += pow_m(in[i], 2);
         atemp[3] += pow_m(in[i], 3);
-
+        atemp[4] += pow_m(in[i], 4);
+        atemp[5] += pow_m(in[i], 5);
+        atemp[6] += pow_m(in[i], 6);
         b[0] += tempRule[i];
         b[1] += in[i] * tempRule[i];
         b[2] += pow_m(in[i], 2) * tempRule[i];
@@ -81,10 +80,10 @@ void FUN_Linear_Fitting(float *in,float *kout){
         for (j = i + 1; j < rank_ + 1; j++)  sum += a[i][j] * b[j];
         b[i] = (b[i] - sum) / a[i][i];
     }
-	kout[0] = b[0];//偏移
-	kout[1] = b[1];//一次项系数
-	kout[2] = b[2];//二次项系数
-	kout[3] = b[3];//三次项系数
+		kout[0] = b[0];//偏移
+		kout[1] = b[1];//一次项系数
+		kout[2] = b[2];//二次项系数
+		kout[3] = b[3];//三次项系数
 	//printf("P(x) = %f%+fx%+fx^2%+fx^3\n\n", b[0], b[1], b[2], b[3]);
 	
 }

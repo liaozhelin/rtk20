@@ -35,8 +35,10 @@ void ON_Fun(void){
 				if(KEY_UP_RELEASE_S)break;
 			}
 		}
-		color_green[1]=10;
+		color_green[0]=15;
+		color_green[1]=40;
 		WS2812_send(color_green,6);
+		color_green[0]=0;
 		color_green[1]=0;
 		KEY_OK_CLEAR;
 		Sys_Tick = HAL_GetTick();
@@ -86,18 +88,31 @@ void loopFun(u8g2_t *in){
   TimeTask();
 } 
 
+static void USER_ADC_TEMP_CAL(void){
+	switch(rank_){
+		case 1:
+			rtk20d.sensor.TempBed = rtk20s.tempCalibrate.K0 + (rtk20s.tempCalibrate.K1*ADC_AvergedValue[0]);
+			break;
+		case 2:
+			rtk20d.sensor.TempBed = rtk20s.tempCalibrate.K0 + (rtk20s.tempCalibrate.K1*ADC_AvergedValue[0]) + (rtk20s.tempCalibrate.K2*pow_m(ADC_AvergedValue[0],2));
+			break;
+		case 3:
+			rtk20d.sensor.TempBed = rtk20s.tempCalibrate.K0 + (rtk20s.tempCalibrate.K1*ADC_AvergedValue[0]) + (rtk20s.tempCalibrate.K2*pow_m(ADC_AvergedValue[0],2)) +  (rtk20s.tempCalibrate.K2*pow_m(ADC_AvergedValue[0],3));
+			break;
+		default:
+			break;
+	}
+	
+}
 
-void USER_ADC_CAL(void){
+static void USER_ADC_CAL(void){
 	rtk20d.sensor.Vbus = (float)ADC_AvergedValue[1]*0.0088623;
 	rtk20d.sensor.Ibus = (float)ADC_AvergedValue[2]*0.0004833;
 	rtk20d.sensor.TempMcu = (357.558 - ((float)ADC_AvergedValue[3]*0.187209));  
+	USER_ADC_TEMP_CAL();
 }
 
-void USER_ADC_TEMP_CAL(void){
-	
-	//(float)ADC_AvergedValue[0] -  
-	
-}
+
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	static uint16_t timeCount = 0;
@@ -107,6 +122,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 			//100MS任务
 			rtk20d.timetask.Time100ms = 1;
 			USER_ADC_CAL();
+			
 		}
 		if(!(timeCount %100)){
 			//1000MS任务

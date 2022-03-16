@@ -24,7 +24,9 @@ void manualSurfaceMenu(u8g2_t *in)
     u8g2_SetFont(in, u8g2_font_helvB24_tn);
     sprintf(oled_buff, "%3d", rtk20s.mannul.TempSet);
     u8g2_DrawStr(in, 36, 27, oled_buff);
-    u8g2_DrawStr(in, 36, 61, "205");
+		memset(oled_buff,0,sizeof(oled_buff));
+		sprintf(oled_buff, "%3.0f", rtk20d.sensor.TempBed);
+    u8g2_DrawStr(in, 36, 61, oled_buff);
     u8g2_DrawRFrame(&u8g2, 0, 0, 95, 30, 10);
     u8g2_DrawRFrame(&u8g2, 0, 34, 95, 30, 10);
     u8g2_SetFont(in, u8g2_font_unifont_t_chinese1);
@@ -101,26 +103,26 @@ void calibration(u8g2_t *in)
 						float Kout[rank_+1],Yin[20];
 						static uint8_t tempRuleNum = 0;
 						static uint8_t cur = 0;
-						static uint16_t conRef = 1000;
+						static uint16_t conRef = 1600;
 						char buf_title1[30],buf_title3[30];
 						const char *buf_title2 ="RareAD :          ";
-						sprintf(buf_title1,"Desire : %d C",tempRule[tempRuleNum]);
+						sprintf(buf_title1,"Desire : %.1f C",tempRule[tempRuleNum]);
 						sprintf(buf_title3,"ConRef : %d",conRef);
 						current_selection = u8g2_UserInterfaceMessage(in,buf_title1,buf_title2,buf_title3," + \n - \n save \n quit ",cur,1);
 						switch(current_selection){
 							//increase
 							case 1:
 								cur = 0;
-								conRef = (conRef>4094?4094:conRef+1);
+								conRef = (conRef>4094?4094:conRef+10);
 								break;
 							//decrease
 							case 2:
 								cur = 1;
-								conRef = (conRef<1?1:conRef-1);
+								conRef = (conRef<1?1:conRef-10);
 								break;
 							//save
 							case 3:
-								Yin[tempRuleNum] = conRef;
+								Yin[tempRuleNum] = (float)conRef;
 								tempRuleNum = (tempRuleNum>19?19:tempRuleNum+1);
 								memset(buf_title1,0,sizeof(buf_title1));
 							  memset(buf_title3,0,sizeof(buf_title3));
@@ -145,6 +147,7 @@ void calibration(u8g2_t *in)
 												 rtk20s.tempCalibrate.K1 = Kout[1];
 												 rtk20s.tempCalibrate.K2 = Kout[2];
 												 rtk20s.tempCalibrate.K3 = Kout[3];
+											   AT24CXX_Save();
 												 HAL_Delay(500); //wait date to save
 												 memset(buf_title1,0,sizeof(buf_title1));
 							           memset(buf_title3,0,sizeof(buf_title3));
@@ -325,7 +328,7 @@ void settingMenu(u8g2_t *in)
 {
     uint8_t current_selection = 0;
     const char *string_settingMenu_title = "RTK20 Setting";
-    const char *string_settingMenu = "Mode\nCalibration\nMonitor\nPeripheral\nAbout\n>Exit<";
+    const char *string_settingMenu = "Mode\nCalibration\nMonitor\nPeripheral\nAbout\n>Exit<\nShutdown";
     u8g2_SetFont(in, u8g2_font_helvB10_tr);
     current_selection = u8g2_UserInterfaceSelectionList(in, string_settingMenu_title, 0, string_settingMenu);
     switch (current_selection)
@@ -348,6 +351,21 @@ void settingMenu(u8g2_t *in)
     case 6:
         rtk20s.flag.SettingFlag = 0X00;
         break;
+		//ShutDown Power
+		case 7:
+			  AT24CXX_Save();
+		    TIM14->PSC = 600;
+				HAL_TIM_PWM_Start(&htim14,TIM_CHANNEL_1);
+				HAL_Delay(100);
+				TIM14->PSC = 800;
+				HAL_Delay(100);
+				TIM14->PSC = 1000;
+				HAL_Delay(100);
+				HAL_TIM_PWM_Stop(&htim14,TIM_CHANNEL_1);
+		    HAL_Delay(100);
+		    POWER_OFF;
+				while(1);
+				break;
     default:
         break;
     }

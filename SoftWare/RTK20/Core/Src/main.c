@@ -106,21 +106,23 @@ int main(void)
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
 	HAL_Delay(50);
-	//ON_Fun();
-	POWER_ON;
+	ON_Fun();
+	//POWER_ON;
 	All_Init();
-//	TIM14->PSC = 1000;
-//	HAL_TIM_PWM_Start(&htim14,TIM_CHANNEL_1);
-//	HAL_Delay(100);
-//	TIM14->PSC = 800;
-//	HAL_Delay(100);
-//	TIM14->PSC = 600;
-//	HAL_Delay(100);
-//	HAL_TIM_PWM_Stop(&htim14,TIM_CHANNEL_1);
+	TIM14->PSC = 1000;
+	HAL_TIM_PWM_Start(&htim14,TIM_CHANNEL_1);
+	HAL_Delay(100);
+	TIM14->PSC = 800;
+	HAL_Delay(100);
+	TIM14->PSC = 600;
+	HAL_Delay(100);
+	HAL_TIM_PWM_Stop(&htim14,TIM_CHANNEL_1);
 	
 	HAL_RTC_SetTime(&hrtc,&rtctime,RTC_FORMAT_BIN);
 	
 	HAL_TIM_Base_Start_IT(&htim16); 
+	
+	rtk20s.flag.SurfaceFlag = 0;
 	//HAL_RTC_GetTime(&hrtc,);
   /* USER CODE END 2 */
 
